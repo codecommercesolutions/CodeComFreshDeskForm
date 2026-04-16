@@ -1,0 +1,63 @@
+{% block freshdesk_company_select %}
+    <div class="freshdesk-company-select">
+
+        {# Label #}
+        <div v-if="label" class="freshdesk-company-select__label">{{ label }}</div>
+
+        <div class="freshdesk-company-select__wrapper">
+
+            {# Text input — shows the resolved company name; user types here to search #}
+            <sw-text-field
+                :value="inputValue"
+                :placeholder="$tc('freshdesk.companySelect.placeholder')"
+                :disabled="disabled"
+                :is-loading="isSearching"
+                @update:value="onInputChange"
+                @focus="onFocus"
+                @blur="onBlur"
+                class="freshdesk-company-select__input">
+                {# Clear × button inside the field when a company is selected #}
+                <template #suffix>
+                    <span
+                        v-if="selectedId && !disabled"
+                        class="freshdesk-company-select__clear-btn"
+                        @mousedown.prevent="clearSelection"
+                        title="Clear">✕</span>
+                </template>
+            </sw-text-field>
+
+            {# Dropdown list — shown while the user is searching #}
+            <div
+                v-if="showDropdown && (filteredOptions.length > 0 || (inputValue && inputValue.length > 0))"
+                class="freshdesk-company-select__dropdown">
+
+                {# Existing company matches #}
+                <div
+                    v-for="option in filteredOptions"
+                    :key="option.value"
+                    class="freshdesk-company-select__item"
+                    @mousedown.prevent="selectExisting(option)">
+                    {{ option.label }}
+                </div>
+
+                {# Divider above "create new" #}
+                <div v-if="filteredOptions.length > 0" class="freshdesk-company-select__divider"></div>
+
+                {# "Create new" option — shown when user has typed something #}
+                <div
+                    v-if="inputValue && inputValue.length > 0"
+                    class="freshdesk-company-select__item freshdesk-company-select__item--create"
+                    @mousedown.prevent="createNew(inputValue)">
+                    + {{ $tc('freshdesk.companySelect.createNew', 0, { name: inputValue }) }}
+                </div>
+
+            </div>
+        </div>
+
+        {# Status: resolving / creating / resolved / error #}
+        <div v-if="statusMessage" :class="['freshdesk-company-select__status', 'is-' + statusType]">
+            {{ statusMessage }}
+        </div>
+
+    </div>
+{% endblock %}

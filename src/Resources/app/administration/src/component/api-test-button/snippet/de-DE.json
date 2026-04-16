@@ -1,0 +1,10 @@
+{
+  "api-test-button": {
+    "title": "API-Verbindung testen",
+    "success": "API-Verbindung erfolgreich!",
+    "error": "API-Verbindung fehlgeschlagen. Bitte überprüfen Sie Ihre Zugangsdaten.",
+    "syncing": "Verbindung erfolgreich! Freshdesk-Daten werden jetzt synchronisiert…",
+    "successWithSync": "Verbindung erfolgreich & Daten synchronisiert! Agents: {agents}, Gruppen: {groups}, Produkte: {products}, Ticketfelder: {ticketFields}, E-Mail-Konfigurationen: {emailConfigs}, Unternehmen: {companies}.",
+    "successSyncFailed": "Verbindung OK, aber Synchronisation fehlgeschlagen: {error}. Daten werden beim nächsten geplanten Lauf aktualisiert."
+  }
+}

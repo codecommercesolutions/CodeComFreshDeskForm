@@ -1,0 +1,10 @@
+{
+  "api-test-button": {
+    "title": "Test API Connection",
+    "success": "API connection successful!",
+    "error": "API connection failed. Please check your credentials.",
+    "syncing": "Connection successful! Syncing Freshdesk data now…",
+    "successWithSync": "Connection successful & data synced! Agents: {agents}, Groups: {groups}, Products: {products}, Ticket fields: {ticketFields}, Email configs: {emailConfigs}, Companies: {companies}.",
+    "successSyncFailed": "Connection OK but data sync failed: {error}. Data will refresh on the next scheduled run."
+  }
+}

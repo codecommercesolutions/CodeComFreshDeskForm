@@ -1,0 +1,22 @@
+.freshdesk-submissions-list {
+    .sw-data-grid {
+        .sw-data-grid__cell--firstName {
+            font-weight: 600;
+        }
+
+        .sw-data-grid__cell--email {
+            color: #52667a;
+        }
+    }
+
+    &__name-link {
+        color: var(--color-shopware-brand-500, #189eff);
+        font-weight: 600;
+        text-decoration: none;
+
+        &:hover {
+            text-decoration: underline;
+            color: var(--color-shopware-brand-700, #0073d9);
+        }
+    }
+}

@@ -1,0 +1,481 @@
+{% block element_freshdesk_standard_form %}
+
+    {% set formPrefix = 'freshdesk-standard-form' %}
+    {% set showUniqueExternalId = config('CodeComFreshDeskForm.config.enableUniqueExternalId') %}
+    {% set showEmailConfigField = config('CodeComFreshDeskForm.config.enableEmailConfigField') %}
+    {% set showGroupField = config('CodeComFreshDeskForm.config.enableGroupField') %}
+    {% set showProductField = config('CodeComFreshDeskForm.config.enableProductField') %}
+    {% set showResponderField = config('CodeComFreshDeskForm.config.enableResponderField') %}
+    {% set showStatusField = config('CodeComFreshDeskForm.config.enableStatusField') %}
+    {% set showSourceField = config('CodeComFreshDeskForm.config.enableSourceField') %}
+    {% set showPriorityField = config('CodeComFreshDeskForm.config.enablePriorityField') %}
+    {% set defaultGroupId = config('CodeComFreshDeskForm.config.freshdeskGroup') %}
+    {% set defaultProductId = config('CodeComFreshDeskForm.config.freshdeskProduct') %}
+    {% set defaultResponderId = config('CodeComFreshDeskForm.config.defaultResponderId') %}
+    {% set defaultStatus = config('CodeComFreshDeskForm.config.defaultStatus') %}
+    {% set defaultSource = config('CodeComFreshDeskForm.config.defaultSource') %}
+    {% set defaultPriority = config('CodeComFreshDeskForm.config.defaultPriority') %}
+
+    {#
+        All select options are rendered server-side from the freshdesk_form_api_data
+        repository (populated every 24 h by FreshdeskApiSyncTask).
+        The storefront JS plugin makes ZERO live API calls.
+    #}
+
+    <div class="cms-element-freshdesk-standard-form" style="padding: 30px 0;">
+        {% if element.config.formTitle.value %}
+            <h2 class="form-title" style="margin-bottom: 30px;">{{ element.config.formTitle.value }}</h2>
+            <p class="form-description">{{ element.config.descriptionLabel.value }}</p>
+        {% endif %}
+
+        <form action="{{ path('frontend.freshdesk.form.submit') }}"
+              method="post"
+              data-freshdesk-form-plugin="true"
+              data-freshdesk-form-plugin-options='{"emptyFieldMessage":"{{ 'error.VIOLATION::IS_BLANK_ERROR'|trans|striptags }}","errorMessage":"{{ 'error.message-default'|trans|striptags }}"}'
+              id="{{ formPrefix }}-{{ element.id }}"
+              class="freshdesk-standard-form">
+
+            <div class="form-content">
+
+                {# ── Personal ─────────────────────────────────────────────────────── #}
+                <div class="row g-2">
+                    {% block freshdesk_form_input_first_name %}
+                        <div class="col-md-6 form-group">
+                            <label class="form-label" for="{{ formPrefix }}-firstName">
+                                {{ 'freshdesk.form.firstNameLabel'|trans }}<span class="required">*</span>
+                            </label>
+                            <input type="text" id="{{ formPrefix }}-firstName" name="firstName" class="form-control" required>
+                        </div>
+                    {% endblock %}
+
+                    {% block freshdesk_form_input_last_name %}
+                        <div class="col-md-6 form-group">
+                            <label class="form-label" for="{{ formPrefix }}-lastName">
+                                {{ 'freshdesk.form.lastNameLabel'|trans }}<span class="required">*</span>
+                            </label>
+                            <input type="text" id="{{ formPrefix }}-lastName" name="lastName" class="form-control" required>
+                        </div>
+                    {% endblock %}
+                </div>
+
+                <div class="row g-2">
+                    {% block freshdesk_form_input_email %}
+                        <div class="col-md-6 form-group">
+                            <label class="form-label" for="{{ formPrefix }}-email">
+                                {{ 'freshdesk.form.emailLabel'|trans }}<span class="required">*</span>
+                            </label>
+                            <input type="email" id="{{ formPrefix }}-email" name="email" class="form-control" required>
+                        </div>
+                    {% endblock %}
+
+                    {% block freshdesk_form_input_phone %}
+                        <div class="col-md-6 form-group">
+                            <label class="form-label" for="{{ formPrefix }}-phone">
+                                {{ 'freshdesk.form.phoneLabel'|trans }}<span class="required">*</span>
+                            </label>
+                            <input type="tel" id="{{ formPrefix }}-phone" name="phone" class="form-control" pattern="[0-9]+" required>
+                        </div>
+                    {% endblock %}
+                </div>
+
+                {# ── Identity fields (facebook_id, twitter_id, unique_external_id) ─ #}
+                {# facebook_id and twitter_id are always visible but not required    #}
+                {# unique_external_id is only shown when enabled in plugin config    #}
+                <div class="row g-2">
+                    {% block freshdesk_form_input_facebook_id %}
+                        <div class="col-md-6 form-group">
+                            <label class="form-label" for="{{ formPrefix }}-facebookId">
+                                {{ 'freshdesk.form.facebookIdLabel'|trans }}
+                            </label>
+                            <input type="text"
+                                   id="{{ formPrefix }}-facebookId"
+                                   name="facebook_id"
+                                   class="form-control"
+                                   placeholder="{{ 'freshdesk.form.facebookIdPlaceholder'|trans }}">
+                        </div>
+                    {% endblock %}
+
+                    {% block freshdesk_form_input_twitter_id %}
+                        <div class="col-md-6 form-group">
+                            <label class="form-label" for="{{ formPrefix }}-twitterId">
+                                {{ 'freshdesk.form.twitterIdLabel'|trans }}
+                            </label>
+                            <input type="text"
+                                   id="{{ formPrefix }}-twitterId"
+                                   name="twitter_id"
+                                   class="form-control"
+                                   placeholder="{{ 'freshdesk.form.twitterIdPlaceholder'|trans }}">
+                        </div>
+                    {% endblock %}
+                </div>
+
+                {% if showUniqueExternalId %}
+                    <div class="row g-2">
+                        {% block freshdesk_form_input_unique_external_id %}
+                            <div class="col-12 form-group">
+                                <label class="form-label" for="{{ formPrefix }}-uniqueExternalId">
+                                    {{ 'freshdesk.form.uniqueExternalIdLabel'|trans }}
+                                </label>
+                                <input type="text"
+                                       id="{{ formPrefix }}-uniqueExternalId"
+                                       name="unique_external_id"
+                                       class="form-control"
+                                       placeholder="{{ 'freshdesk.form.uniqueExternalIdPlaceholder'|trans }}">
+                            </div>
+                        {% endblock %}
+                    </div>
+                {% endif %}
+
+                {# ── Ticket type + Company ──────────────────────────────────────── #}
+                <div class="row g-2 mb-4">
+                    {% block freshdesk_form_select_type %}
+                        <div class="col-md-6 form-group">
+                            <label class="form-label" for="{{ formPrefix }}-type">
+                                {{ 'freshdesk.form.typeLabel'|trans }}<span class="required">*</span>
+                            </label>
+                            <select id="{{ formPrefix }}-type" name="type" class="form-select" required>
+                                <option value="">{{ 'freshdesk.form.selectOption'|trans }}</option>
+                                {% if element.freshdeskFields.type is defined %}
+                                    {% for choice in element.freshdeskFields.type %}
+                                        <option value="{{ choice.value }}"
+                                            {% if choice.value == config('CodeComFreshDeskForm.config.defaultTicketType') %}selected{% endif %}>
+                                            {{ choice.label }}
+                                        </option>
+                                    {% endfor %}
+                                {% endif %}
+                            </select>
+                        </div>
+                    {% endblock %}
+                    {% block freshdesk_form_select_company %}
+                        <div class="col-md-6 form-group">
+                            <label class="form-label" for="{{ formPrefix }}-company-input">
+                                {{ 'freshdesk.form.companyLabel'|trans }}
+                            </label>
+                            <input type="text"
+                                   id="{{ formPrefix }}-company-input"
+                                   name="company_name"
+                                   class="form-control"
+                                   placeholder="{{ 'freshdesk.form.companySearchPlaceholder'|trans }}"
+                                   autocomplete="off">
+                        </div>
+                    {% endblock %}
+                </div>
+
+                {# ── Group & Product (from cached groups / products) ────────────── #}
+                <div class="row g-2">
+                    {% block freshdesk_form_select_group %}
+                        {% if showGroupField %}
+                            <div class="col-md-6 form-group">
+                                <label class="form-label" for="{{ formPrefix }}-group">
+                                    {{ 'freshdesk.form.groupLabel'|trans }}
+                                </label>
+                                <select id="{{ formPrefix }}-group" name="group_id" class="form-select">
+                                    <option value="">{{ 'freshdesk.form.selectGroup'|trans }}</option>
+                                    {% if element.freshdeskGroups is defined %}
+                                        {% for group in element.freshdeskGroups %}
+                                            <option value="{{ group.id }}"
+                                                {% if group.id == defaultGroupId %}selected{% endif %}>
+                                                {{ group.name }}
+                                            </option>
+                                        {% endfor %}
+                                    {% endif %}
+                                </select>
+                            </div>
+                        {% else %}
+                            <input type="hidden" name="group_id" value="{{ defaultGroupId ?? '' }}">
+                        {% endif %}
+                    {% endblock %}
+
+                    {% block freshdesk_form_select_product %}
+                        {% if showProductField %}
+                            <div class="col-md-6 form-group">
+                                <label class="form-label" for="{{ formPrefix }}-product">
+                                    {{ 'freshdesk.form.productLabel'|trans }}
+                                </label>
+                                <select id="{{ formPrefix }}-product" name="product_id" class="form-select">
+                                    <option value="">{{ 'freshdesk.form.selectProduct'|trans }}</option>
+                                    {% if element.freshdeskProducts is defined %}
+                                        {% for product in element.freshdeskProducts %}
+                                            <option value="{{ product.id }}"
+                                                {% if product.id == defaultProductId %}selected{% endif %}>
+                                                {{ product.name }}
+                                            </option>
+                                        {% endfor %}
+                                    {% endif %}
+                                </select>
+                            </div>
+                        {% else %}
+                            <input type="hidden" name="product_id" value="{{ defaultProductId ?? '' }}">
+                        {% endif %}
+                    {% endblock %}
+                </div>
+
+                {# ── Agent / Email Config (from cached DB) ─────────────────────── #}
+                <div class="row g-2">
+                    {% block freshdesk_form_select_responder %}
+                        {% if showResponderField %}
+                            <div class="col-md-6 form-group">
+                                <label class="form-label" for="{{ formPrefix }}-responder">
+                                    {{ 'freshdesk.form.responderLabel'|trans }}
+                                </label>
+                                <select id="{{ formPrefix }}-responder" name="responder_id" class="form-select">
+                                    <option value="">{{ 'freshdesk.form.selectAgent'|trans }}</option>
+                                    {% if element.freshdeskAgents is defined %}
+                                        {% for agent in element.freshdeskAgents %}
+                                            <option value="{{ agent.id }}"
+                                                {% if agent.id == defaultResponderId %}selected{% endif %}>
+                                                {{ agent.contact.name ?? agent.id }}
+                                            </option>
+                                        {% endfor %}
+                                    {% endif %}
+                                </select>
+                            </div>
+                        {% else %}
+                            <input type="hidden" name="responder_id" value="{{ defaultResponderId ?? '' }}">
+                        {% endif %}
+                    {% endblock %}
+
+                    {% block freshdesk_form_select_email_config %}
+                        {% if showEmailConfigField %}
+                            <div class="col-md-6 form-group">
+                                <label class="form-label" for="{{ formPrefix }}-emailConfig">
+                                    {{ 'freshdesk.form.emailConfigLabel'|trans }}
+                                </label>
+                                <select id="{{ formPrefix }}-emailConfig" name="email_config_id" class="form-select">
+                                    <option value="">{{ 'freshdesk.form.selectEmailConfig'|trans }}</option>
+                                    {% if element.freshdeskEmailConfigs is defined %}
+                                        {% for emailConfig in element.freshdeskEmailConfigs %}
+                                            <option value="{{ emailConfig.id }}">{{ emailConfig.name ?? emailConfig.id }}</option>
+                                        {% endfor %}
+                                    {% endif %}
+                                </select>
+                            </div>
+                        {% endif %}
+                    {% endblock %}
+                </div>
+
+                {# ── Status / Source / Priority (from cached ticket_fields) ─────── #}
+                <div class="row g-2">
+                    {% block freshdesk_form_select_status %}
+                        {% if showStatusField %}
+                            <div class="col-md-4 form-group">
+                                <label class="form-label" for="{{ formPrefix }}-status">
+                                    {{ 'freshdesk.form.statusLabel'|trans }}
+                                </label>
+                                <select id="{{ formPrefix }}-status" name="status" class="form-select">
+                                    <option value="">{{ 'freshdesk.form.selectOption'|trans }}</option>
+                                    {% if element.freshdeskFields.status is defined %}
+                                        {% for choice in element.freshdeskFields.status %}
+                                            <option value="{{ choice.value }}"
+                                                {% if choice.value == defaultStatus %}selected{% endif %}>
+                                                {{ choice.label }}
+                                            </option>
+                                        {% endfor %}
+                                    {% endif %}
+                                </select>
+                            </div>
+                        {% else %}
+                            <input type="hidden" name="status" value="{{ defaultStatus ?? '' }}">
+                        {% endif %}
+                    {% endblock %}
+
+                    {% block freshdesk_form_select_source %}
+                        {% if showSourceField %}
+                            <div class="col-md-4 form-group">
+                                <label class="form-label" for="{{ formPrefix }}-source">
+                                    {{ 'freshdesk.form.sourceLabel'|trans }}
+                                </label>
+                                <select id="{{ formPrefix }}-source" name="source" class="form-select">
+                                    <option value="">{{ 'freshdesk.form.selectOption'|trans }}</option>
+                                    {% if element.freshdeskFields.source is defined %}
+                                        {% for choice in element.freshdeskFields.source %}
+                                            <option value="{{ choice.value }}"
+                                                {% if choice.value == defaultSource %}selected{% endif %}>
+                                                {{ choice.label }}
+                                            </option>
+                                        {% endfor %}
+                                    {% endif %}
+                                </select>
+                            </div>
+                        {% else %}
+                            <input type="hidden" name="source" value="{{ defaultSource ?? '' }}">
+                        {% endif %}
+                    {% endblock %}
+
+                    {% block freshdesk_form_select_priority %}
+                        {% if showPriorityField %}
+                            <div class="col-md-4 form-group">
+                                <label class="form-label" for="{{ formPrefix }}-priority">
+                                    {{ 'freshdesk.form.priorityLabel'|trans }}
+                                </label>
+                                <select id="{{ formPrefix }}-priority" name="priority" class="form-select">
+                                    <option value="">{{ 'freshdesk.form.selectOption'|trans }}</option>
+                                    {% if element.freshdeskFields.priority is defined %}
+                                        {% for choice in element.freshdeskFields.priority %}
+                                            <option value="{{ choice.value }}"
+                                                {% if choice.value == defaultPriority %}selected{% endif %}>
+                                                {{ choice.label }}
+                                            </option>
+                                        {% endfor %}
+                                    {% endif %}
+                                </select>
+                            </div>
+                        {% else %}
+                            <input type="hidden" name="priority" value="{{ defaultPriority ?? '' }}">
+                        {% endif %}
+                    {% endblock %}
+                </div>
+
+                {# ── Subject & Message ─────────────────────────────────────────────── #}
+                <div class="row g-2">
+                    {% block freshdesk_form_input_subject %}
+                        <div class="col-12 form-group">
+                            <label class="form-label" for="{{ formPrefix }}-subject">
+                                {{ 'freshdesk.form.subjectLabel'|trans }}<span class="required">*</span>
+                            </label>
+                            <input type="text" id="{{ formPrefix }}-subject" name="subject" class="form-control" required>
+                        </div>
+                    {% endblock %}
+
+                    {% block freshdesk_form_textarea_message %}
+                        <div class="col-12 form-group">
+                            <label class="form-label" for="{{ formPrefix }}-message">
+                                {{ 'freshdesk.form.messageLabel'|trans }}<span class="required">*</span>
+                            </label>
+                            <textarea id="{{ formPrefix }}-message" name="message" rows="5" class="form-control" required></textarea>
+                        </div>
+                    {% endblock %}
+                </div>
+
+                {# ── Custom ticket fields (default=false from Freshdesk API) ────────── #}
+                {% if element.freshdeskCustomFields is defined and element.freshdeskCustomFields|length > 0 %}
+                    {% block freshdesk_form_custom_fields %}
+                        {#
+                            urlNumberField: the admin configures the Freshdesk API field name
+                            (e.g. cf_reference_number) in the plugin settings under
+                            "URL ?number= → Ticket Field".
+                            When the page URL contains ?number=VALUE the JS plugin
+                            reads data-url-number-field="true" and fills the value in.
+                        #}
+                        {% set urlNumberField = config('CodeComFreshDeskForm.config.urlNumberField') %}
+
+                        <div class="row g-2">
+                            {% for field in element.freshdeskCustomFields %}
+                                {#
+                                    Hidden type hint — the PHP controller reads
+                                    custom_field_types[cf_name] to cast the value
+                                    to the correct PHP/Freshdesk type (int, float, bool).
+                                #}
+                                <input type="hidden"
+                                       name="custom_field_types[{{ field.name }}]"
+                                       value="{{ field.type }}">
+
+                                {# Mark the field that should be auto-filled from the URL ?number= param #}
+                                {% set isUrlNumberField = (urlNumberField is not empty and field.name == urlNumberField) %}
+
+                                <div class="col-md-12 form-group">
+                                    <label class="form-label" for="{{ formPrefix }}-{{ field.name }}">
+                                        {{ field.label }}
+                                        {% if field.required %}<span class="required">*</span>{% endif %}
+                                    </label>
+
+                                    {% if field.choices|length > 0 %}
+                                        {# Dropdown field #}
+                                        <select
+                                            id="{{ formPrefix }}-{{ field.name }}"
+                                            name="custom_fields[{{ field.name }}]"
+                                            class="form-select"
+                                            {{ isUrlNumberField ? 'data-url-number-field="true"' : '' }}
+                                            {{ field.required ? 'required' : '' }}>
+                                            <option value="">{{ 'freshdesk.form.selectOption'|trans }}</option>
+                                            {% for choice in field.choices %}
+                                                <option value="{{ choice.value }}">{{ choice.label }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    {% elseif field.type == 'custom_number' or field.type == 'custom_decimal' %}
+                                        {# Number field #}
+                                        <input
+                                            type="number"
+                                            id="{{ formPrefix }}-{{ field.name }}"
+                                            name="custom_fields[{{ field.name }}]"
+                                            class="form-control"
+                                            {% if field.type == 'custom_decimal' %}step="0.01"{% endif %}
+                                            {{ isUrlNumberField ? 'data-url-number-field="true"' : '' }}
+                                            {{ field.required ? 'required' : '' }}>
+                                    {% elseif field.type == 'custom_date' %}
+                                        {# Date field #}
+                                        <input
+                                            type="date"
+                                            id="{{ formPrefix }}-{{ field.name }}"
+                                            name="custom_fields[{{ field.name }}]"
+                                            class="form-control"
+                                            {{ isUrlNumberField ? 'data-url-number-field="true"' : '' }}
+                                            {{ field.required ? 'required' : '' }}>
+                                    {% elseif field.type == 'custom_checkbox' %}
+                                        {# Checkbox — unchecked checkboxes are NOT submitted by FormData.
+                                           We submit a companion hidden "false" value first; if the
+                                           checkbox is ticked its "true" value overrides it in the JS. #}
+                                        <input type="hidden"
+                                               name="custom_fields[{{ field.name }}]"
+                                               value="false">
+                                        <div class="form-check mt-1">
+                                            <input
+                                                type="checkbox"
+                                                id="{{ formPrefix }}-{{ field.name }}"
+                                                name="custom_fields[{{ field.name }}]"
+                                                value="true"
+                                                class="form-check-input"
+                                                {{ field.required ? 'required' : '' }}>
+                                            <label class="form-check-label" for="{{ formPrefix }}-{{ field.name }}">
+                                                {{ field.label }}
+                                            </label>
+                                        </div>
+                                    {% elseif field.type == 'custom_paragraph' %}
+                                        {# Textarea field #}
+                                        <textarea
+                                            id="{{ formPrefix }}-{{ field.name }}"
+                                            name="custom_fields[{{ field.name }}]"
+                                            rows="3"
+                                            class="form-control"
+                                            {{ isUrlNumberField ? 'data-url-number-field="true"' : '' }}
+                                            {{ field.required ? 'required' : '' }}></textarea>
+                                    {% else %}
+                                        {# Default: text input #}
+                                        <input
+                                            type="text"
+                                            id="{{ formPrefix }}-{{ field.name }}"
+                                            name="custom_fields[{{ field.name }}]"
+                                            class="form-control"
+                                            {{ isUrlNumberField ? 'data-url-number-field="true"' : '' }}
+                                            {{ field.required ? 'required' : '' }}>
+                                    {% endif %}
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% endblock %}
+                {% endif %}
+
+                <div class="row g-2 float-end">
+                {% block freshdesk_form_submit %}
+                    <button type="submit" class="btn btn-primary float-end">
+                        {{ 'freshdesk.form.submitLabel'|trans }}
+                    </button>
+                {% endblock %}
+
+                </div>
+
+            </div>
+        </form>
+
+        {#
+            Response messages are injected here by FreshdeskFormPlugin JS.
+            Matches the Shopware core pattern: no alert() popup, inline Bootstrap
+            alert appended below the form. aria-live="polite" announces changes
+            to screen readers automatically.
+        #}
+        {% block freshdesk_form_response %}
+            <div class="freshdesk-form-response" aria-live="polite" aria-atomic="true"></div>
+        {% endblock %}
+
+    </div>
+{% endblock %}

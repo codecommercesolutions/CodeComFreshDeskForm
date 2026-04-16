@@ -1,0 +1,52 @@
+{
+  "freshdesk": {
+    "form": {
+      "firstNameLabel": "Vorname",
+      "lastNameLabel": "Nachname",
+      "emailLabel": "E-Mail-Adresse",
+      "phoneLabel": "Telefonnummer",
+      "typeLabel": "Tickettyp",
+      "statusLabel": "Status",
+      "sourceLabel": "Quelle",
+      "priorityLabel": "Priorität",
+      "subjectLabel": "Betreff",
+      "messageLabel": "Nachricht",
+      "submitLabel": "Absenden",
+      "groupLabel": "Gruppe",
+      "productLabel": "Produkt",
+      "warrantyNumberLabel": "Garantienummer",
+      "responderLabel": "Agent",
+      "emailConfigLabel": "E-Mail-Konfiguration",
+      "companyLabel": "Unternehmen",
+      "selectGroup": "Gruppe auswählen...",
+      "selectProduct": "Produkt auswählen...",
+      "selectAgent": "Agent auswählen...",
+      "selectEmailConfig": "E-Mail-Konfiguration auswählen...",
+      "selectCompany": "Unternehmen auswählen...",
+      "validation": {
+        "empty": "Das Feld darf nicht leer sein."
+      },
+      "error": {
+        "general": "Ein Fehler ist aufgetreten. Bitte versuchen Sie es erneut."
+      },
+      "selectOption": "Bitte wählen...",
+      "companySearchPlaceholder": "Unternehmen suchen oder erstellen...",
+      "privacy": "Ich stimme der <a href=\"/datenschutz\" target=\"_blank\">Datenschutzerklärung</a> zu",
+      "submit": "Absenden",
+      "submitting": "Wird gesendet...",
+      "success": "Formular erfolgreich übermittelt!",
+      "required": "Dieses Feld ist erforderlich",
+      "invalidEmail": "Bitte geben Sie eine gültige E-Mail-Adresse ein",
+      "invalidUrl": "Bitte geben Sie eine gültige URL ein",
+      "invalidNumber": "Bitte geben Sie eine gültige Nummer ein",
+      "fileTooLarge": "Dateigröße überschreitet die maximal zulässige Größe",
+      "invalidFileType": "Dateityp ist nicht erlaubt",
+      "facebookIdLabel": "Facebook",
+      "facebookIdPlaceholder": "z.B. meinprofil",
+      "twitterIdLabel": "Twitter / X",
+      "twitterIdPlaceholder": "z.B. meinhandle",
+      "uniqueExternalIdLabel": "Externe Referenz-ID",
+      "uniqueExternalIdPlaceholder": "Ihre externe Referenznummer"
+    }
+  }
+}

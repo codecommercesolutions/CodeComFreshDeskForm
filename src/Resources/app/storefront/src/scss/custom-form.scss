@@ -1,0 +1,163 @@
+.cms-element-freshdesk-standard-form {
+    margin: 0 auto;
+    
+    .form-title {
+        margin-bottom: 1.5rem;
+        font-size: 1.75rem;
+        font-weight: 600;
+    }
+    
+    .form-content {
+        .form-group {
+            margin-bottom: 1rem;
+            
+            .form-label {
+                display: block;
+                margin-bottom: 0.5rem;
+                font-weight: 500;
+                
+                .required {
+                    color: #dc3545;
+                }
+            }
+            
+            .form-control,
+            .form-select {
+                width: 100%;
+                padding: 0.375rem 0.75rem;
+                font-size: 1rem;
+                line-height: 1.5;
+                border: 1px solid #ced4da;
+                border-radius: 0.25rem;
+                transition: border-color 0.15s ease-in-out;
+                
+                &:focus {
+                    border-color: #86b7fe;
+                    outline: 0;
+                    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+                }
+            }
+            
+            textarea.form-control {
+                resize: vertical;
+            }
+        }
+        
+        .btn-primary {
+            padding: 0.375rem 0.75rem;
+            font-size: 1rem;
+            border-radius: 0.25rem;
+            
+            &:hover {
+                opacity: 0.9;
+            }
+        }
+        
+        .form-text {
+            font-size: 0.875rem;
+            color: #6c757d;
+        }
+    }
+    
+    // Responsive
+    @media (max-width: 767px) {
+        .row {
+            .col-md-6,
+            .col-md-4 {
+                width: 100%;
+                margin-bottom: 1rem;
+            }
+        }
+        
+        .btn-primary {
+            width: 100%;
+            float: none !important;
+        }
+    }
+}
+
+// ── Form response message (injected by FreshdeskFormPlugin) ──────────────────
+.freshdesk-form-response {
+    margin-top: 1.25rem;
+    display: inline-block;
+    width: 100%;
+
+    .freshdesk-alert {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.75rem;
+        padding: 1rem 1.25rem;
+        border-radius: 0.375rem;
+        font-size: 0.95rem;
+        animation: freshdeskFadeIn 0.25s ease-in-out;
+
+        &.alert-success {
+            background-color: #d1e7dd;
+            border: 1px solid #a3cfbb;
+            color: #0a3622;
+
+            .icon svg { fill: #198754; }
+        }
+
+        &.alert-danger {
+            background-color: #f8d7da;
+            border: 1px solid #f1aeb5;
+            color: #58151c;
+
+            .icon svg { fill: #dc3545; }
+        }
+
+        .icon {
+            flex-shrink: 0;
+            width: 1.25rem;
+            height: 1.25rem;
+            margin-top: 0.125rem;
+
+            svg { width: 100%; height: 100%; }
+        }
+
+        .alert-content-container {
+            flex: 1;
+
+            .alert-content {
+                margin: 0;
+                line-height: 1.5;
+            }
+        }
+    }
+}
+
+@keyframes freshdeskFadeIn {
+    from { opacity: 0; transform: translateY(-6px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+// ── Submit button loading state (ButtonLoadingIndicator) ─────────────────────
+.freshdesk-standard-form {
+    [type="submit"] {
+        position: relative;
+        transition: opacity 0.15s ease;
+
+        &:disabled {
+            cursor: wait;
+            opacity: 0.75;
+        }
+
+        // Shopware ButtonLoadingIndicator injects a <div class="loader"> element
+        .loader {
+            display: inline-block;
+            width: 0.9rem;
+            height: 0.9rem;
+            border: 2px solid rgba(255, 255, 255, 0.4);
+            border-top-color: #fff;
+            border-radius: 50%;
+            animation: freshdeskSpin 0.65s linear infinite;
+            vertical-align: middle;
+            margin-right: 0.4rem;
+        }
+    }
+}
+
+@keyframes freshdeskSpin {
+    to { transform: rotate(360deg); }
+}

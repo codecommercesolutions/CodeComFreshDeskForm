@@ -1,0 +1,150 @@
+{% block freshdesk_submissions_detail %}
+	<sw-page class="freshdesk-submissions-detail">
+
+		<template #smart-bar-header>
+			<h2 v-if="isCreateMode">{{ $tc('freshdesk.detail.titleCreate') }}</h2>
+			<h2 v-else>{{ $tc('freshdesk.detail.titleEdit') }}</h2>
+		</template>
+
+		<template #smart-bar-actions>
+			<sw-button-process :isLoading="isLoading" :processSuccess="isSaveSuccessful" variant="primary" @process-finish="saveFinish" @click="onSave">
+				{{ $tc('freshdesk.detail.buttonSave') }}
+			</sw-button-process>
+		</template>
+
+		<template #content>
+			<sw-card-view v-if="submission">
+				<sw-card :title="$tc('freshdesk.detail.cardPersonalInfo')" :isloading="isLoading">
+					<sw-container columns="repeat(auto-fit, minmax(250px, 1fr))" gap="0 30px">
+						<sw-text-field v-model="submission.firstName" :label="$tc('freshdesk.detail.labelFirstName')" :placeholder="placeholder(submission, 'firstName')" required :error="firstNameError"></sw-text-field>
+						<sw-text-field v-model="submission.lastName" :label="$tc('freshdesk.detail.labelLastName')" :placeholder="placeholder(submission, 'lastName')" required :error="lastNameError"></sw-text-field>
+						<sw-text-field v-model="submission.email" :label="$tc('freshdesk.detail.labelEmail')" :placeholder="placeholder(submission, 'email')" required :error="emailError"></sw-text-field>
+						<sw-text-field v-model="submission.phone" :label="$tc('freshdesk.detail.labelPhone')" :placeholder="placeholder(submission, 'phone')" required :error="phoneError"></sw-text-field>
+						<!-- Company: search-as-you-type, create-if-not-exist -->
+						<freshdesk-company-select
+								:value="submission.companyId"
+								:email="submission.email || ''"
+								:options="companyOptions"
+								:label="$tc('freshdesk.detail.labelCompanyId')"
+								@update:value="submission.companyId = $event"
+								@update:companyName="onCompanyNameUpdate">
+						</freshdesk-company-select>
+					</sw-container>
+				</sw-card>
+
+				<sw-card :title="$tc('freshdesk.detail.cardTicketInfo')" :isloading="isLoading">
+					<sw-container columns="repeat(auto-fit, minmax(250px, 1fr))" gap="0 30px">
+						<sw-single-select :value="submission.type" @update:value="submission.type = $event" :label="$tc('freshdesk.detail.labelType')" :options="typeOptions" required :error="typeError"></sw-single-select>
+					</sw-container>
+					<sw-text-field v-model="submission.subject" :label="$tc('freshdesk.detail.labelSubject')" :placeholder="placeholder(submission, 'subject')" required :error="subjectError"></sw-text-field>
+					<sw-textarea-field v-model="submission.message" :label="$tc('freshdesk.detail.labelMessage')" :placeholder="placeholder(submission, 'message')" required :error="messageError"></sw-textarea-field>
+				</sw-card>
+
+				<sw-card :title="$tc('freshdesk.detail.cardAdditionalInfo')" :isloading="isLoading">
+					<sw-container columns="repeat(auto-fit, minmax(250px, 1fr))" gap="0 30px">
+						<sw-single-select :value="submission.productId" @update:value="submission.productId = $event" :label="$tc('freshdesk.detail.labelProductId')" :options="productOptions" :placeholder="$tc('freshdesk.detail.placeholderSelect')"></sw-single-select>
+						<sw-single-select :value="submission.groupId" @update:value="submission.groupId = $event" :label="$tc('freshdesk.detail.labelGroupId')" :options="groupOptions" :placeholder="$tc('freshdesk.detail.placeholderSelect')"></sw-single-select>
+						<sw-single-select :value="submission.responderId" @update:value="submission.responderId = $event" :label="$tc('freshdesk.detail.labelResponderId')" :options="agentOptions" :placeholder="$tc('freshdesk.detail.placeholderSelect')"></sw-single-select>
+						<sw-single-select :value="submission.emailConfigId" @update:value="submission.emailConfigId = $event" :label="$tc('freshdesk.detail.labelEmailConfigId')" :options="emailConfigOptions" :placeholder="$tc('freshdesk.detail.placeholderSelect')"></sw-single-select>
+						<sw-single-select :value="submission.status" @update:value="submission.status = $event" :label="$tc('freshdesk.detail.labelStatus')" :options="statusOptions" :placeholder="$tc('freshdesk.detail.placeholderSelect')"></sw-single-select>
+						<sw-single-select :value="submission.source" @update:value="submission.source = $event" :label="$tc('freshdesk.detail.labelSource')" :options="sourceOptions" :placeholder="$tc('freshdesk.detail.placeholderSelect')"></sw-single-select>
+						<sw-single-select :value="submission.priority" @update:value="submission.priority = $event" :label="$tc('freshdesk.detail.labelPriority')" :options="priorityOptions" :placeholder="$tc('freshdesk.detail.placeholderSelect')"></sw-single-select>
+						<sw-number-field v-model="submission.freshdeskTicketId" :label="$tc('freshdesk.detail.labelTicketId')" numbertype="int" :disabled="true" :helptext="$tc('freshdesk.detail.helpTextTicketId')"></sw-number-field>
+					</sw-container>
+				</sw-card>
+
+				<!-- Special Identity Fields (requester_id, facebook_id, twitter_id, unique_external_id) -->
+				<sw-card :title="$tc('freshdesk.detail.cardSpecialFields')" position-identifier="sw-settings-freshdesk--cardSpecialFields" :isloading="isLoading">
+					<sw-container columns="repeat(auto-fit, minmax(250px, 1fr))" gap="0 30px">
+						<sw-text-field
+							v-model="submission.requesterId"
+							:label="$tc('freshdesk.detail.labelRequesterId')"
+							:helptext="$tc('freshdesk.detail.helpTextRequesterId')"
+							:disabled="true">
+						</sw-text-field>
+						<sw-text-field
+							v-model="submission.facebookId"
+							:label="$tc('freshdesk.detail.labelFacebookId')"
+							:placeholder="$tc('freshdesk.detail.placeholderFacebookId')">
+						</sw-text-field>
+						<sw-text-field
+							v-model="submission.twitterId"
+							:label="$tc('freshdesk.detail.labelTwitterId')"
+							:placeholder="$tc('freshdesk.detail.placeholderTwitterId')">
+						</sw-text-field>
+						<sw-text-field
+							v-model="submission.uniqueExternalId"
+							:label="$tc('freshdesk.detail.labelUniqueExternalId')"
+							:placeholder="$tc('freshdesk.detail.placeholderUniqueExternalId')">
+						</sw-text-field>
+					</sw-container>
+				</sw-card>
+
+				<!-- Extra Fields (custom Freshdesk ticket fields) -->
+				<sw-card
+					v-if="hasExtraFields || customFieldDefs.length > 0"
+					:title="$tc('freshdesk.detail.cardExtraFields')"
+					:isloading="isLoading">
+
+					<!-- Show saved values as a readable JSON-style list when not editing -->
+					<div v-if="customFieldDefs.length === 0 && hasExtraFields" class="freshdesk-extra-fields__readonly">
+						<pre class="freshdesk-extra-fields__json">{{ extraFieldsJson }}</pre>
+					</div>
+
+					<!-- Editable fields when customFieldDefs loaded from API cache -->
+					<sw-container v-if="customFieldDefs.length > 0" columns="repeat(auto-fit, minmax(250px, 1fr))" gap="0 30px">
+						<template v-for="field in customFieldDefs" :key="field.name">
+
+							<!-- Dropdown field -->
+							<sw-single-select
+								v-if="field.choices && field.choices.length > 0"
+								:value="getExtraField(field.name)"
+								@update:value="setExtraField(field.name, $event)"
+								:label="field.label"
+								:options="fieldChoicesToOptions(field.choices)"
+								:placeholder="$tc('freshdesk.detail.placeholderSelect')">
+							</sw-single-select>
+
+							<!-- Number field -->
+							<sw-number-field
+								v-else-if="field.type === 'custom_number' || field.type === 'custom_decimal'"
+								:value="getExtraField(field.name)"
+								@update:value="setExtraField(field.name, $event)"
+								:label="field.label"
+								:numberType="field.type === 'custom_decimal' ? 'float' : 'int'">
+							</sw-number-field>
+
+							<!-- Checkbox field -->
+							<sw-checkbox-field
+								v-else-if="field.type === 'custom_checkbox'"
+								:value="getExtraField(field.name) === true || getExtraField(field.name) === 'true'"
+								@update:value="setExtraField(field.name, $event)"
+								:label="field.label">
+							</sw-checkbox-field>
+
+							<!-- Textarea (paragraph) field -->
+							<sw-textarea-field
+								v-else-if="field.type === 'custom_paragraph'"
+								:value="getExtraField(field.name)"
+								@update:value="setExtraField(field.name, $event)"
+								:label="field.label">
+							</sw-textarea-field>
+
+							<!-- Default: text field -->
+							<sw-text-field
+								v-else
+								:value="getExtraField(field.name)"
+								@update:value="setExtraField(field.name, $event)"
+								:label="field.label">
+							</sw-text-field>
+
+						</template>
+					</sw-container>
+
+				</sw-card>
+
+			</sw-card-view>
+		</template>
+
+	</sw-page>
+{% endblock %}

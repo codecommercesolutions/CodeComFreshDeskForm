@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/System/SystemConfig/Schema/config.xsd">
+
+    <card>
+        <title>API Connection</title>
+        <title lang="de-DE">API Verbindung</title>
+
+        <input-field type="bool">
+            <name>enabled</name>
+            <label>Enable Freshdesk Integration</label>
+            <label lang="de-DE">Freshdesk Integration aktivieren</label>
+            <defaultValue>false</defaultValue>
+        </input-field>
+
+        <input-field type="text">
+            <name>apiUrl</name>
+            <label>Freshdesk API URL</label>
+            <label lang="de-DE">Freshdesk API URL</label>
+            <placeholder>https://yourdomain.freshdesk.com</placeholder>
+            <helpText>Base URL without /api/v2</helpText>
+        </input-field>
+
+        <input-field type="text">
+            <name>apiKey</name>
+            <label>API Key</label>
+            <label lang="de-DE">API Schlüssel</label>
+        </input-field>
+
+        <component name="api-test-button">
+            <name>testApiConnection</name>
+        </component>
+    </card>
+
+    <card>
+        <title>Customize Form</title>
+        <title lang="de-DE">Formular anpassen</title>
+
+        <input-field type="text">
+            <name>defaultTicketType</name>
+            <label>Default Ticket Type</label>
+            <label lang="de-DE">Standard Ticket-Typ</label>
+            <helpText>Request, Offer, Extent, Order, Spare part, Complaint, Repair, and Spam.</helpText>
+            <helpText lang="de-DE">Request, Offer, Extent, Order, Spare part, Complaint, Repair, and Spam.</helpText>
+            <placeholder>Request</placeholder>
+            <defaultValue>Spare part</defaultValue>
+        </input-field>
+
+        <component name="freshdesk-group-select">
+            <name>freshdeskGroup</name>
+            <label>Freshdesk Group</label>
+            <label lang="de-DE">Default Freshdesk Gruppe</label>
+        </component>
+
+        <component name="freshdesk-product-select">
+            <name>freshdeskProduct</name>
+            <label>Freshdesk Product</label>
+            <label lang="de-DE">Default Freshdesk Produkt</label>
+        </component>
+
+        <component name="freshdesk-agent-select">
+            <name>defaultResponderId</name>
+            <label>Default Agent</label>
+            <label lang="de-DE">Standard Agent</label>
+        </component>
+
+        <input-field type="int">
+            <name>defaultStatus</name>
+            <label>Default Status</label>
+            <label lang="de-DE">Standard status</label>
+            <helpText>(2=Open, 3=Pending, 4=Resolved, 5=Closed)</helpText>
+            <helpText lang="de-DE">(2 = Offen, 3 = Ausstehend, 4 = Gelöst, 5 = Geschlossen)</helpText>
+            <defaultValue>2</defaultValue>
+        </input-field>
+
+        <input-field type="int">
+            <name>defaultSource</name>
+            <label>Default Source</label>
+            <label lang="de-DE">Standard quelle</label>
+            <helpText>(1 = Email, 2 = Portal, 3 = Phone, 4 = Forum, 8 = MobiHelp, 9 = Feedback Widget, 10 = Outbound Email, 11 = Ecommerce, 13 = Whatsapp, 15 = Web Chat, 16 = Web Form, 17 = Instagram Message, 18 = Instagram Comment, 19 = Facebook Message, 20 = Facebook Comment, 21 = Mobile Chat SDK, 22 = SMS)</helpText>
+            <helpText lang="de-DE">(1 = E-Mail, 2 = Portal, 3 = Telefon, 4 = Forum, 8 = MobiHelp, 9 = Feedback-Widget, 10 = Ausgehende E-Mail, 11 = E-Commerce, 13 = WhatsApp, 15 = Web-Chat, 16 = Webformular, 17 = Instagram-Nachricht, 18 = Instagram-Kommentar, 19 = Facebook-Nachricht, 20 = Facebook-Kommentar, 21 = Mobile Chat SDK, 22 = SMS)</helpText>
+            <defaultValue>2</defaultValue>
+        </input-field>
+
+        <input-field type="int">
+            <name>defaultPriority</name>
+            <label>Default Priority</label>
+            <label lang="de-DE">Standard Priorität</label>
+            <helpText>(1=Low, 2=Medium, 3=High, 4=Urgent)</helpText>
+            <helpText lang="de-DE">(1=Niedrig, 2=Mittel, 3=Hoch, 4=Dringend)</helpText>
+            <defaultValue>1</defaultValue>
+        </input-field>
+
+        <input-field type="text">
+            <name>urlNumberField</name>
+            <label>URL ?number= → Ticket Field (API name)</label>
+            <label lang="de-DE">URL ?number= → Ticket-Feld (API-Name)</label>
+            <helpText>When the page URL contains ?number=VALUE that value is automatically filled into the custom field whose Freshdesk API name you enter here. Example: cf_reference_number — leave empty to disable.</helpText>
+            <helpText lang="de-DE">Wenn die Seiten-URL ?number=WERT enthält, wird dieser Wert automatisch in das Formularfeld eingetragen, dessen Freshdesk-API-Name hier steht. Beispiel: cf_reference_number — Leer lassen zum Deaktivieren.</helpText>
+            <placeholder>cf_reference_number</placeholder>
+        </input-field>
+
+        <input-field type="bool">
+            <name>enableEmailConfigField</name>
+            <label>Show Email Configuration field on form</label>
+            <label lang="de-DE">E-Mail-Konfigurationsfeld im Formular anzeigen</label>
+            <defaultValue>true</defaultValue>
+        </input-field>
+
+        <input-field type="bool">
+            <name>enableUniqueExternalId</name>
+            <label>Show "Unique External ID" field on form</label>
+            <label lang="de-DE">"Eindeutige externe ID"-Feld im Formular anzeigen</label>
+            <helpText>When enabled a Unique External ID input appears on the storefront form. Disable to hide it completely.</helpText>
+            <defaultValue>false</defaultValue>
+        </input-field>
+
+        <input-field type="bool">
+            <name>enableGroupField</name>
+            <label>Show Group field on form</label>
+            <label lang="de-DE">Gruppenfeld im Formular anzeigen</label>
+            <defaultValue>true</defaultValue>
+        </input-field>
+
+        <input-field type="bool">
+            <name>enableProductField</name>
+            <label>Show Product field on form</label>
+            <label lang="de-DE">Produktfeld im Formular anzeigen</label>
+            <defaultValue>true</defaultValue>
+        </input-field>
+
+        <input-field type="bool">
+            <name>enableResponderField</name>
+            <label>Show Agent field on form</label>
+            <label lang="de-DE">Agentenfeld im Formular anzeigen</label>
+            <defaultValue>true</defaultValue>
+        </input-field>
+
+        <input-field type="bool">
+            <name>enableStatusField</name>
+            <label>Show Status field on form</label>
+            <label lang="de-DE">Statusfeld im Formular anzeigen</label>
+            <defaultValue>true</defaultValue>
+        </input-field>
+
+        <input-field type="bool">
+            <name>enableSourceField</name>
+            <label>Show Source field on form</label>
+            <label lang="de-DE">Quellenfeld im Formular anzeigen</label>
+            <defaultValue>true</defaultValue>
+        </input-field>
+
+        <input-field type="bool">
+            <name>enablePriorityField</name>
+            <label>Show Priority field on form</label>
+            <label lang="de-DE">Prioritätsfeld im Formular anzeigen</label>
+            <defaultValue>true</defaultValue>
+        </input-field>
+
+    </card>
+
+</config>

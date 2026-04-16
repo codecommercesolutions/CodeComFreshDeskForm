@@ -1,0 +1,37 @@
+{% block freshdesk_submissions_list %}
+    <sw-page class="freshdesk-submissions-list">
+
+        <template #smart-bar-header>
+            <h2>{{ $tc('freshdesk.list.title') }}</h2>
+        </template>
+
+        <template #smart-bar-actions>
+            <sw-button @click="onCreate" variant="primary">
+                {{ $tc('freshdesk.list.button') }}
+            </sw-button>
+        </template>
+
+        <template #content>
+            <sw-entity-listing
+                v-if="submissions"
+                :repository="repository"
+                :items="submissions"
+                :columns="columns"
+                :isLoading="isLoading"
+                detailRoute="freshdesk.submissions.detail"
+                :showSelection="true"
+                @delete="onDelete">
+
+                {# ── Router-link on the firstName column ── #}
+                <template #column-firstName="{ item }">
+                    <router-link
+                        :to="{ name: 'freshdesk.submissions.detail', params: { id: item.id } }"
+                        class="freshdesk-submissions-list__name-link">
+                        {{ item.firstName }}
+                    </router-link>
+                </template>
+
+            </sw-entity-listing>
+        </template>
+    </sw-page>
+{% endblock %}

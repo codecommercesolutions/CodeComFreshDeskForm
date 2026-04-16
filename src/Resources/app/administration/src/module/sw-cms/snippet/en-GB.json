@@ -1,0 +1,29 @@
+{
+  "sw-cms": {
+    "blocks": {
+      "freshdeskStandardForm": {
+        "label": "Freshdesk Form"
+      }
+    },
+    "elements": {
+      "freshdeskStandardForm": {
+        "label": "Freshdesk Form",
+        "config": {
+          "formTitle": "Form Title",
+          "descriptionLabel": "Form Description ",
+          "firstNameLabel": "First Name ",
+          "lastNameLabel": "Last Name ",
+          "emailLabel": "Email ",
+          "phoneLabel": "Phone ",
+          "typeLabel": "Type ",
+          "subjectLabel": "Subject ",
+          "groupId": "Group ID (optional)",
+          "productId": "Product ID (optional)",
+          "responderId": "Responder ID (optional)",
+          "emailConfigId": "Email Config ID (optional)",
+          "companyId": "Company ID (optional)"
+        }
+      }
+    }
+  }
+}

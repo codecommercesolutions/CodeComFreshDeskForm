@@ -1,0 +1,25 @@
+{
+  "base": "/bundles/codecomfreshdeskform/administration/",
+  "entryPoints": {
+    "code-com-fresh-desk-form": {
+      "css": [
+        "/bundles/codecomfreshdeskform/administration/assets/code-com-fresh-desk-form-BtKyD_Kz.css"
+      ],
+      "dynamic": [],
+      "js": [
+        "/bundles/codecomfreshdeskform/administration/assets/code-com-fresh-desk-form-zPFb9UAh.js"
+      ],
+      "legacy": false,
+      "preload": []
+    }
+  },
+  "legacy": false,
+  "metadatas": {},
+  "version": [
+    "7.1.0",
+    7,
+    1,
+    0
+  ],
+  "viteServer": null
+}

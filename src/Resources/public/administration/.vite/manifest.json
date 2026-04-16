@@ -1,0 +1,11 @@
+{
+  "main.js": {
+    "file": "assets/code-com-fresh-desk-form-zPFb9UAh.js",
+    "name": "code-com-fresh-desk-form",
+    "src": "main.js",
+    "isEntry": true,
+    "css": [
+      "assets/code-com-fresh-desk-form-BtKyD_Kz.css"
+    ]
+  }
+}

@@ -1,0 +1,8 @@
+import './module/freshdesk-submissions';
+import './module/sw-cms';
+import './module/system-config';
+import './component/api-test-button';
+import './component/freshdesk-agent-select';
+import './component/freshdesk-group-select';
+import './component/freshdesk-product-select';
+import './component/freshdesk-company-select';

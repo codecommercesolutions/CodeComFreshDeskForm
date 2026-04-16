@@ -1,0 +1,60 @@
+{
+  "freshdesk": {
+    "general": {
+      "title": "Freshdesk",
+      "description": "Alle Formulare anzeigen"
+    },
+    "list": {
+      "title": "Freshdesk",
+      "button": "Ticket erstellen"
+    },
+    "detail": {
+      "titleCreate": "Ticket erstellen",
+      "titleEdit": "Ticket bearbeiten",
+      "buttonSave": "Speichern",
+      "cardPersonalInfo": "Persönliche Informationen",
+      "cardAdditionalInfo": "Zusätzliche Informationen",
+      "cardAssignmentInfo": "Zuweisungsinformationen",
+      "labelFirstName": "Vorname",
+      "labelLastName": "Nachname",
+      "labelEmail": "E-Mail",
+      "labelPhone": "Telefon",
+      "labelSubject": "Betreff",
+      "labelMessage": "Nachricht",
+      "labelType": "Typ",
+      "labelProductId": "Produkt",
+      "labelGroupId": "Agentengruppe",
+      "labelStatus": "Status",
+      "labelSource": "Quelle",
+      "labelPriority": "Priorität",
+      "labelTicketId": "Freshdesk Ticket-ID",
+      "helpTextTicketId": "Wird nach der Einreichung automatisch zugewiesen",
+      "labelResponderId": "Agent (Bearbeiter)",
+      "labelEmailConfigId": "E-Mail-Konfiguration",
+      "labelCompanyId": "Unternehmen",
+      "placeholderSelect": "Auswählen...",
+      "messageSaveSuccess": "Einreichung erfolgreich gespeichert",
+      "messageSaveError": "Einreichung konnte nicht gespeichert werden",
+      "cardExtraFields": "Zusatzfelder",
+      "cardTicketInfo": "Ticket-Informationen",
+      "cardSpecialFields": "Besondere Identitätsfelder",
+      "labelRequesterId": "Anforderer-ID (Freshdesk Kontakt-ID)",
+      "helpTextRequesterId": "Automatisch aufgelöste Freshdesk-Kontakt-ID. Nur lesen.",
+      "labelFacebookId": "Facebook (Social Handle)",
+      "placeholderFacebookId": "z.B. meinprofil",
+      "labelTwitterId": "Twitter / X (Social Handle)",
+      "placeholderTwitterId": "z.B. meinhandle",
+      "labelUniqueExternalId": "Eindeutige externe ID",
+      "placeholderUniqueExternalId": "Externe Referenz"
+    },
+    "companySelect": {
+      "placeholder": "Unternehmen suchen oder erstellen...",
+      "startTyping": "Tippen Sie um Unternehmen zu suchen",
+      "createNew": "Neues Unternehmen \"{name}\" erstellen",
+      "creating": "Erstelle Unternehmen \"{name}\"...",
+      "resolved": "Unternehmen gesetzt und Kontakt aktualisiert",
+      "error": "Unternehmen konnte nicht gesetzt werden. Bitte erneut versuchen.",
+      "resolving": "Unternehmensname wird aufgelöst…"
+    }
+  }
+}

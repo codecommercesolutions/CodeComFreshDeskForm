@@ -1,0 +1,93 @@
+.freshdesk-company-select {
+    position: relative;
+
+    &__label {
+        display: block;
+        margin-bottom: 4px;
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--color-darkgray-900, #52667a);
+        line-height: 1.4;
+    }
+
+    &__wrapper {
+        position: relative;
+    }
+
+    // Clear (×) button rendered inside sw-text-field's suffix slot
+    &__clear-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 18px;
+        height: 18px;
+        cursor: pointer;
+        color: var(--color-gray-500, #8394a7);
+        font-size: 12px;
+        border-radius: 50%;
+        transition: background 0.15s, color 0.15s;
+        user-select: none;
+
+        &:hover {
+            background: var(--color-gray-200, #e8edf1);
+            color: var(--color-gray-800, #2d3f51);
+        }
+    }
+
+    // Dropdown panel
+    &__dropdown {
+        position: absolute;
+        top: calc(100% + 2px);
+        left: 0;
+        right: 0;
+        z-index: 2000;
+        background: #fff;
+        border: 1px solid var(--color-gray-300, #d1d9e0);
+        border-radius: 4px;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+        max-height: 240px;
+        overflow-y: auto;
+    }
+
+    &__item {
+        padding: 8px 12px;
+        font-size: 13px;
+        cursor: pointer;
+        line-height: 1.4;
+        color: var(--color-darkgray-900, #2d3f51);
+        transition: background 0.1s;
+
+        &:hover {
+            background: var(--color-shopware-brand-50, #f0f4ff);
+        }
+
+        &--create {
+            color: var(--color-shopware-brand-500, #189eff);
+            border-top: 1px solid var(--color-gray-100, #f0f3f6);
+            font-weight: 600;
+
+            &:hover {
+                background: var(--color-shopware-brand-50, #e8f4ff);
+            }
+        }
+    }
+
+    &__divider {
+        height: 1px;
+        background: var(--color-gray-100, #f0f3f6);
+        margin: 2px 0;
+    }
+
+    // Status messages
+    &__status {
+        margin-top: 4px;
+        font-size: 12px;
+        padding: 3px 8px;
+        border-radius: 3px;
+        line-height: 1.4;
+
+        &.is-info    { color: #189eff; background: #e8f4ff; }
+        &.is-success { color: #00a550; background: #e6f7ee; }
+        &.is-error   { color: #de294c; background: #fde8ed; }
+    }
+}

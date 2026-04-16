@@ -1,0 +1,52 @@
+{
+  "freshdesk": {
+    "form": {
+      "firstNameLabel": "First name",
+      "lastNameLabel": "Last name",
+      "emailLabel": "Email address",
+      "phoneLabel": "Phone number",
+      "typeLabel": "Type of ticket",
+      "statusLabel": "Status",
+      "sourceLabel": "Source",
+      "priorityLabel": "Priority",
+      "subjectLabel": "Subject",
+      "messageLabel": "Message",
+      "submitLabel": "Submit",
+      "groupLabel": "Group",
+      "productLabel": "Product",
+      "warrantyNumberLabel": "Warranty number",
+      "responderLabel": "Agent",
+      "emailConfigLabel": "Email Configuration",
+      "companyLabel": "Company",
+      "selectGroup": "Select Group...",
+      "selectProduct": "Select Product...",
+      "selectAgent": "Select Agent...",
+      "selectEmailConfig": "Select Email Config...",
+      "selectCompany": "Select Company...",
+      "validation": {
+        "empty": "Input should not be empty."
+      },
+      "error": {
+        "general": "An error occurred. Please try again."
+      },
+      "companySearchPlaceholder": "Search or create company...",
+      "privacy": "I agree to the <a href=\"/privacy-policy\" target=\"_blank\">privacy policy</a>",
+      "selectOption": "Please select...",
+      "submit": "Submit",
+      "submitting": "Submitting...",
+      "success": "Form submitted successfully!",
+      "required": "This field is required",
+      "invalidEmail": "Please enter a valid email address",
+      "invalidUrl": "Please enter a valid URL",
+      "invalidNumber": "Please enter a valid number",
+      "fileTooLarge": "File size exceeds maximum allowed size",
+      "invalidFileType": "File type is not allowed",
+      "facebookIdLabel": "Facebook",
+      "facebookIdPlaceholder": "e.g. myprofile",
+      "twitterIdLabel": "Twitter / X",
+      "twitterIdPlaceholder": "e.g. myhandle",
+      "uniqueExternalIdLabel": "External Reference ID",
+      "uniqueExternalIdPlaceholder": "Your external reference number"
+    }
+  }
+}

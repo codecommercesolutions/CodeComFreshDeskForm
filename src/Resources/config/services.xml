@@ -1,0 +1,74 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <defaults autowire="true" autoconfigure="true" public="false"/>
+
+        <service id="CodeCom\FreshDeskForm\Service\FreshdeskService"/>
+
+        <service id="CodeCom\FreshDeskForm\Storefront\Controller\CustomFormController" public="true">
+            <argument key="$formSubmissionRepository" type="service" id="freshdesk_form_submission.repository"/>
+            <argument key="$formApiDataRepository" type="service" id="freshdesk_form_api_data.repository"/>
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+            <tag name="controller.service_arguments"/>
+        </service>
+
+        <service id="CodeCom\FreshDeskForm\Core\Api\FreshdeskApiController" public="true">
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+            <tag name="controller.service_arguments"/>
+        </service>
+
+        <service id="CodeCom\FreshDeskForm\Core\Api\FreshdeskLookupController" public="true">
+            <argument key="$formApiDataRepository" type="service" id="freshdesk_form_api_data.repository"/>
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+            <tag name="controller.service_arguments"/>
+        </service>
+
+        <service id="CodeCom\FreshDeskForm\Subscriber\CmsPageLoaderSubscriber">
+            <argument key="$formApiDataRepository" type="service" id="freshdesk_form_api_data.repository"/>
+            <tag name="kernel.event_subscriber"/>
+        </service>
+
+        <service id="CodeCom\FreshDeskForm\Subscriber\FormSubmissionSubscriber">
+            <argument key="$formSubmissionRepository" type="service" id="freshdesk_form_submission.repository"/>
+            <argument key="$formApiDataRepository" type="service" id="freshdesk_form_api_data.repository"/>
+            <tag name="kernel.event_subscriber"/>
+        </service>
+
+        <service id="CodeCom\FreshDeskForm\Core\Api\FreshdeskTicketsController" public="true">
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+            <tag name="controller.service_arguments"/>
+        </service>
+
+        <!-- Entity Definitions -->
+        <service id="CodeCom\FreshDeskForm\Core\Content\FormSubmission\FormSubmissionDefinition">
+            <tag name="shopware.entity.definition" entity="freshdesk_form_submission"/>
+        </service>
+
+        <service id="CodeCom\FreshDeskForm\Core\Content\FormApiData\FormApiDataDefinition">
+            <tag name="shopware.entity.definition" entity="freshdesk_form_api_data"/>
+        </service>
+
+        <!-- Scheduled Task: 24-hour Freshdesk API data sync -->
+        <service id="CodeCom\FreshDeskForm\Schedule\FreshdeskApiSyncTask">
+            <tag name="shopware.scheduled.task"/>
+        </service>
+
+        <service id="CodeCom\FreshDeskForm\Schedule\FreshdeskApiSyncTaskHandler">
+            <argument key="$scheduledTaskRepository" type="service" id="scheduled_task.repository"/>
+            <argument key="$formApiDataRepository" type="service" id="freshdesk_form_api_data.repository"/>
+            <tag name="messenger.message_handler"/>
+        </service>
+    </services>
+</container>
