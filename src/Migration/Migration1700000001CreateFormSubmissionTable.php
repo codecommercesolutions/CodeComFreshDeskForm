@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace CodeCom\FreshDeskForm\Migration;
+namespace CodeCom\FreshdeskForm\Migration;
 
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\Exception;

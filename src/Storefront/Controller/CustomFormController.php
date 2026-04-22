@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace CodeCom\FreshDeskForm\Storefront\Controller;
+namespace CodeCom\FreshdeskForm\Storefront\Controller;
 
 use DateTime;
-use CodeCom\FreshDeskForm\Core\Content\FormSubmission\FormSubmissionCollection;
-use CodeCom\FreshDeskForm\Service\FreshdeskService;
+use CodeCom\FreshdeskForm\Core\Content\FormSubmission\FormSubmissionCollection;
+use CodeCom\FreshdeskForm\Service\FreshdeskService;
 use Shopware\Core\Framework\DataAbstractionLayer\EntityRepository;
 use Shopware\Core\Framework\DataAbstractionLayer\Search\Criteria;
 use Shopware\Core\Framework\Uuid\Uuid;

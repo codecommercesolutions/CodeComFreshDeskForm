@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace CodeCom\FreshDeskForm\Schedule;
+namespace CodeCom\FreshdeskForm\Schedule;
 
-use CodeCom\FreshDeskForm\Service\FreshdeskService;
+use CodeCom\FreshdeskForm\Service\FreshdeskService;
 use Psr\Log\LoggerInterface;
 use Shopware\Core\Framework\Context;
 use Shopware\Core\Framework\DataAbstractionLayer\EntityRepository;

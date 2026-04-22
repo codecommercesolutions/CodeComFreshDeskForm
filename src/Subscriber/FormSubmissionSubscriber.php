@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace CodeCom\FreshDeskForm\Subscriber;
+namespace CodeCom\FreshdeskForm\Subscriber;
 
-use CodeCom\FreshDeskForm\Service\FreshdeskService;
+use CodeCom\FreshdeskForm\Service\FreshdeskService;
 use Psr\Log\LoggerInterface;
 use Shopware\Core\Framework\Context;
 use Shopware\Core\Framework\DataAbstractionLayer\EntityRepository;
@@ -34,7 +34,7 @@ class FormSubmissionSubscriber implements EventSubscriberInterface
     // ─────────────────────────────────────────────────────────────────────────
     private function log(string $message): void
     {
-        $this->logger->info($message, ['plugin' => 'CodeComFreshDeskForm', 'source' => 'FormSubmissionSubscriber']);
+        $this->logger->info($message, ['plugin' => 'CodeComFreshdeskForm', 'source' => 'FormSubmissionSubscriber']);
     }
 
     /**
@@ -303,7 +303,7 @@ class FormSubmissionSubscriber implements EventSubscriberInterface
      * facebook_id, twitter_id, and unique_external_id are always kept in sync
      * — regardless of whether company_id is filled or not.
      *
-     * @param \CodeCom\FreshDeskForm\Core\Content\FormSubmission\FormSubmissionEntity $entity
+     * @param \CodeCom\FreshdeskForm\Core\Content\FormSubmission\FormSubmissionEntity $entity
      * @param string|null $salesChannelId
      */
     private function syncContactFields(object $entity, ?string $salesChannelId): void

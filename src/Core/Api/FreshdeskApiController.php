@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace CodeCom\FreshDeskForm\Core\Api;
+namespace CodeCom\FreshdeskForm\Core\Api;
 
-use CodeCom\FreshDeskForm\Service\FreshdeskService;
+use CodeCom\FreshdeskForm\Service\FreshdeskService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Attribute\Route;

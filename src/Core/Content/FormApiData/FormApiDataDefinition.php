@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace CodeCom\FreshDeskForm\Core\Content\FormApiData;
+namespace CodeCom\FreshdeskForm\Core\Content\FormApiData;
 
 use Shopware\Core\Framework\DataAbstractionLayer\EntityDefinition;
 use Shopware\Core\Framework\DataAbstractionLayer\Field\CreatedAtField;

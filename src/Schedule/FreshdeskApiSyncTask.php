@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace CodeCom\FreshDeskForm\Schedule;
+namespace CodeCom\FreshdeskForm\Schedule;
 
 use Shopware\Core\Framework\MessageQueue\ScheduledTask\ScheduledTask;
 

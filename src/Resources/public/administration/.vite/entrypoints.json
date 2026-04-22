@@ -1,13 +1,13 @@
 {
   "base": "/bundles/codecomfreshdeskform/administration/",
   "entryPoints": {
-    "code-com-fresh-desk-form": {
+    "code-com-freshdesk-form": {
       "css": [
-        "/bundles/codecomfreshdeskform/administration/assets/code-com-fresh-desk-form-BtKyD_Kz.css"
+        "/bundles/codecomfreshdeskform/administration/assets/code-com-freshdesk-form-BtKyD_Kz.css"
       ],
       "dynamic": [],
       "js": [
-        "/bundles/codecomfreshdeskform/administration/assets/code-com-fresh-desk-form-zPFb9UAh.js"
+        "/bundles/codecomfreshdeskform/administration/assets/code-com-freshdesk-form-DUjN_h8N.js"
       ],
       "legacy": false,
       "preload": []

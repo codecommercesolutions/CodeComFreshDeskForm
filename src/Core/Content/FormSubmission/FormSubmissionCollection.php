@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace CodeCom\FreshDeskForm\Core\Content\FormSubmission;
+namespace CodeCom\FreshdeskForm\Core\Content\FormSubmission;
 
 use Shopware\Core\Framework\DataAbstractionLayer\EntityCollection;
 

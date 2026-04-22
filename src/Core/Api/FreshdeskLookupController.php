@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace CodeCom\FreshDeskForm\Core\Api;
+namespace CodeCom\FreshdeskForm\Core\Api;
 
-use CodeCom\FreshDeskForm\Service\FreshdeskService;
+use CodeCom\FreshdeskForm\Service\FreshdeskService;
 use Shopware\Core\Framework\Context;
 use Shopware\Core\Framework\DataAbstractionLayer\EntityRepository;
 use Shopware\Core\Framework\DataAbstractionLayer\Search\Criteria;

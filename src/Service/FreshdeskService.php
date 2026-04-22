@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace CodeCom\FreshDeskForm\Service;
+namespace CodeCom\FreshdeskForm\Service;
 
 use Psr\Log\LoggerInterface;
 use Shopware\Core\System\SystemConfig\SystemConfigService;
@@ -28,7 +28,7 @@ class FreshdeskService
     // ─────────────────────────────────────────────────────────────────────────
     private function log(string $message): void
     {
-        $this->logger->info($message, ['plugin' => 'CodeComFreshDeskForm']);
+        $this->logger->info($message, ['plugin' => 'CodeComFreshdeskForm']);
     }
 
     private function normalizeCustomFieldType(string $fieldName, string $fieldType): string
@@ -54,14 +54,14 @@ class FreshdeskService
     {
         $this->log("updateTicket() called | ticket_id={$ticketId}");
 
-        $enabled = $this->systemConfigService->get('CodeComFreshDeskForm.config.enabled', $salesChannelId);
+        $enabled = $this->systemConfigService->get('CodeComFreshdeskForm.config.enabled', $salesChannelId);
         if (! $enabled) {
             $this->log('updateTicket() aborted: integration is disabled');
             return ['success' => false, 'message' => 'Freshdesk integration is disabled'];
         }
 
-        $apiUrl = $this->systemConfigService->get('CodeComFreshDeskForm.config.apiUrl', $salesChannelId);
-        $apiKey = $this->systemConfigService->get('CodeComFreshDeskForm.config.apiKey', $salesChannelId);
+        $apiUrl = $this->systemConfigService->get('CodeComFreshdeskForm.config.apiUrl', $salesChannelId);
+        $apiKey = $this->systemConfigService->get('CodeComFreshdeskForm.config.apiKey', $salesChannelId);
 
         if (! $apiUrl || ! $apiKey) {
             $this->log('updateTicket() aborted: API URL or key not configured');
@@ -201,14 +201,14 @@ class FreshdeskService
     {
         $this->log("createTicket() called | email=" . ($formData['email'] ?? '-'));
 
-        $enabled = $this->systemConfigService->get('CodeComFreshDeskForm.config.enabled', $salesChannelId);
+        $enabled = $this->systemConfigService->get('CodeComFreshdeskForm.config.enabled', $salesChannelId);
         if (! $enabled) {
             $this->log('createTicket() aborted: integration is disabled');
             return ['success' => false, 'message' => 'Freshdesk integration is disabled'];
         }
 
-        $apiUrl = $this->systemConfigService->get('CodeComFreshDeskForm.config.apiUrl', $salesChannelId);
-        $apiKey = $this->systemConfigService->get('CodeComFreshDeskForm.config.apiKey', $salesChannelId);
+        $apiUrl = $this->systemConfigService->get('CodeComFreshdeskForm.config.apiUrl', $salesChannelId);
+        $apiKey = $this->systemConfigService->get('CodeComFreshdeskForm.config.apiKey', $salesChannelId);
 
         if (! $apiUrl || ! $apiKey) {
             $this->log('createTicket() aborted: API URL or key not configured');
@@ -511,8 +511,8 @@ class FreshdeskService
     {
         $this->log('testConnection() called');
 
-        $apiUrl = $this->systemConfigService->get('CodeComFreshDeskForm.config.apiUrl', $salesChannelId);
-        $apiKey = $this->systemConfigService->get('CodeComFreshDeskForm.config.apiKey', $salesChannelId);
+        $apiUrl = $this->systemConfigService->get('CodeComFreshdeskForm.config.apiUrl', $salesChannelId);
+        $apiKey = $this->systemConfigService->get('CodeComFreshdeskForm.config.apiKey', $salesChannelId);
 
         if (! $apiUrl || ! $apiKey) {
             $this->log('testConnection() aborted: credentials not configured');
@@ -562,8 +562,8 @@ class FreshdeskService
     {
         $this->log("getCompanyById() called | company_id={$companyId}");
 
-        $apiUrl = $this->systemConfigService->get('CodeComFreshDeskForm.config.apiUrl', $salesChannelId);
-        $apiKey = $this->systemConfigService->get('CodeComFreshDeskForm.config.apiKey', $salesChannelId);
+        $apiUrl = $this->systemConfigService->get('CodeComFreshdeskForm.config.apiUrl', $salesChannelId);
+        $apiKey = $this->systemConfigService->get('CodeComFreshdeskForm.config.apiKey', $salesChannelId);
 
         if (! $apiUrl || ! $apiKey) {
             $this->log('getCompanyById() aborted: API not configured');
@@ -613,8 +613,8 @@ class FreshdeskService
             return [];
         }
 
-        $apiUrl = $this->systemConfigService->get('CodeComFreshDeskForm.config.apiUrl', $salesChannelId);
-        $apiKey = $this->systemConfigService->get('CodeComFreshDeskForm.config.apiKey', $salesChannelId);
+        $apiUrl = $this->systemConfigService->get('CodeComFreshdeskForm.config.apiUrl', $salesChannelId);
+        $apiKey = $this->systemConfigService->get('CodeComFreshdeskForm.config.apiKey', $salesChannelId);
 
         if (! $apiUrl || ! $apiKey) {
             $this->log('searchCompaniesByName() aborted: API not configured');
@@ -664,8 +664,8 @@ class FreshdeskService
     {
         $this->log("createFreshdeskCompany() called | name={$name}");
 
-        $apiUrl = $this->systemConfigService->get('CodeComFreshDeskForm.config.apiUrl', $salesChannelId);
-        $apiKey = $this->systemConfigService->get('CodeComFreshDeskForm.config.apiKey', $salesChannelId);
+        $apiUrl = $this->systemConfigService->get('CodeComFreshdeskForm.config.apiUrl', $salesChannelId);
+        $apiKey = $this->systemConfigService->get('CodeComFreshdeskForm.config.apiKey', $salesChannelId);
 
         if (! $apiUrl || ! $apiKey) {
             $this->log('createFreshdeskCompany() aborted: API not configured');
@@ -722,8 +722,8 @@ class FreshdeskService
     {
         $this->log("findContactByEmail() called | email={$email}");
 
-        $apiUrl = $this->systemConfigService->get('CodeComFreshDeskForm.config.apiUrl', $salesChannelId);
-        $apiKey = $this->systemConfigService->get('CodeComFreshDeskForm.config.apiKey', $salesChannelId);
+        $apiUrl = $this->systemConfigService->get('CodeComFreshdeskForm.config.apiUrl', $salesChannelId);
+        $apiKey = $this->systemConfigService->get('CodeComFreshdeskForm.config.apiKey', $salesChannelId);
 
         if (! $apiUrl || ! $apiKey) {
             $this->log('findContactByEmail() aborted: API not configured');
@@ -774,8 +774,8 @@ class FreshdeskService
     {
         $this->log("updateFreshdeskContact() called | contact_id={$contactId} | data=" . json_encode($data));
 
-        $apiUrl = $this->systemConfigService->get('CodeComFreshDeskForm.config.apiUrl', $salesChannelId);
-        $apiKey = $this->systemConfigService->get('CodeComFreshDeskForm.config.apiKey', $salesChannelId);
+        $apiUrl = $this->systemConfigService->get('CodeComFreshdeskForm.config.apiUrl', $salesChannelId);
+        $apiKey = $this->systemConfigService->get('CodeComFreshdeskForm.config.apiKey', $salesChannelId);
 
         if (! $apiUrl || ! $apiKey) {
             $this->log('updateFreshdeskContact() aborted: API not configured');
@@ -865,8 +865,8 @@ class FreshdeskService
             ];
         }
 
-        $apiUrl = $this->systemConfigService->get('CodeComFreshDeskForm.config.apiUrl', $salesChannelId);
-        $apiKey = $this->systemConfigService->get('CodeComFreshDeskForm.config.apiKey', $salesChannelId);
+        $apiUrl = $this->systemConfigService->get('CodeComFreshdeskForm.config.apiUrl', $salesChannelId);
+        $apiKey = $this->systemConfigService->get('CodeComFreshdeskForm.config.apiKey', $salesChannelId);
 
         if (! $apiUrl || ! $apiKey) {
             $this->log('createOrUpdateRegistrationContact() aborted: API not configured');
@@ -992,8 +992,8 @@ class FreshdeskService
     ): array {
         $this->log("createFreshdeskContact() called | email={$email} | company_id={$companyId} | name={$name}");
 
-        $apiUrl = $this->systemConfigService->get('CodeComFreshDeskForm.config.apiUrl', $salesChannelId);
-        $apiKey = $this->systemConfigService->get('CodeComFreshDeskForm.config.apiKey', $salesChannelId);
+        $apiUrl = $this->systemConfigService->get('CodeComFreshdeskForm.config.apiUrl', $salesChannelId);
+        $apiKey = $this->systemConfigService->get('CodeComFreshdeskForm.config.apiKey', $salesChannelId);
 
         if (! $apiUrl || ! $apiKey) {
             $this->log('createFreshdeskContact() aborted: API not configured');
@@ -1333,8 +1333,8 @@ class FreshdeskService
      */
     private function fetchFromApi(string $endpoint, ?string $salesChannelId = null): array
     {
-        $apiUrl = $this->systemConfigService->get('CodeComFreshDeskForm.config.apiUrl', $salesChannelId);
-        $apiKey = $this->systemConfigService->get('CodeComFreshDeskForm.config.apiKey', $salesChannelId);
+        $apiUrl = $this->systemConfigService->get('CodeComFreshdeskForm.config.apiUrl', $salesChannelId);
+        $apiKey = $this->systemConfigService->get('CodeComFreshdeskForm.config.apiKey', $salesChannelId);
 
         if (! $apiUrl || ! $apiKey) {
             $this->log("fetchFromApi({$endpoint}) aborted: API not configured");

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace CodeCom\FreshDeskForm\Subscriber;
+namespace CodeCom\FreshdeskForm\Subscriber;
 
 use Shopware\Core\Content\Cms\Events\CmsPageLoadedEvent;
 use Shopware\Core\Framework\DataAbstractionLayer\EntityRepository;

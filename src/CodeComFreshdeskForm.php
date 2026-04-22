@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace CodeCom\FreshDeskForm;
+namespace CodeCom\FreshdeskForm;
 
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\Exception;
@@ -11,7 +11,7 @@ use Shopware\Core\Framework\Plugin\Context\InstallContext;
 use Shopware\Core\Framework\Plugin\Context\UninstallContext;
 use Shopware\Core\Framework\Plugin\Context\UpdateContext;
 
-class CodeComFreshDeskForm extends Plugin
+class CodeComFreshdeskForm extends Plugin
 {
     /**
      * All tables created by this plugin, in dependency-safe drop order.

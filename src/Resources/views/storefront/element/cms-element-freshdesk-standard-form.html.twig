@@ -1,20 +1,20 @@
 {% block element_freshdesk_standard_form %}
 
     {% set formPrefix = 'freshdesk-standard-form' %}
-    {% set showUniqueExternalId = config('CodeComFreshDeskForm.config.enableUniqueExternalId') %}
-    {% set showEmailConfigField = config('CodeComFreshDeskForm.config.enableEmailConfigField') %}
-    {% set showGroupField = config('CodeComFreshDeskForm.config.enableGroupField') %}
-    {% set showProductField = config('CodeComFreshDeskForm.config.enableProductField') %}
-    {% set showResponderField = config('CodeComFreshDeskForm.config.enableResponderField') %}
-    {% set showStatusField = config('CodeComFreshDeskForm.config.enableStatusField') %}
-    {% set showSourceField = config('CodeComFreshDeskForm.config.enableSourceField') %}
-    {% set showPriorityField = config('CodeComFreshDeskForm.config.enablePriorityField') %}
-    {% set defaultGroupId = config('CodeComFreshDeskForm.config.freshdeskGroup') %}
-    {% set defaultProductId = config('CodeComFreshDeskForm.config.freshdeskProduct') %}
-    {% set defaultResponderId = config('CodeComFreshDeskForm.config.defaultResponderId') %}
-    {% set defaultStatus = config('CodeComFreshDeskForm.config.defaultStatus') %}
-    {% set defaultSource = config('CodeComFreshDeskForm.config.defaultSource') %}
-    {% set defaultPriority = config('CodeComFreshDeskForm.config.defaultPriority') %}
+    {% set showUniqueExternalId = config('CodeComFreshdeskForm.config.enableUniqueExternalId') %}
+    {% set showEmailConfigField = config('CodeComFreshdeskForm.config.enableEmailConfigField') %}
+    {% set showGroupField = config('CodeComFreshdeskForm.config.enableGroupField') %}
+    {% set showProductField = config('CodeComFreshdeskForm.config.enableProductField') %}
+    {% set showResponderField = config('CodeComFreshdeskForm.config.enableResponderField') %}
+    {% set showStatusField = config('CodeComFreshdeskForm.config.enableStatusField') %}
+    {% set showSourceField = config('CodeComFreshdeskForm.config.enableSourceField') %}
+    {% set showPriorityField = config('CodeComFreshdeskForm.config.enablePriorityField') %}
+    {% set defaultGroupId = config('CodeComFreshdeskForm.config.freshdeskGroup') %}
+    {% set defaultProductId = config('CodeComFreshdeskForm.config.freshdeskProduct') %}
+    {% set defaultResponderId = config('CodeComFreshdeskForm.config.defaultResponderId') %}
+    {% set defaultStatus = config('CodeComFreshdeskForm.config.defaultStatus') %}
+    {% set defaultSource = config('CodeComFreshdeskForm.config.defaultSource') %}
+    {% set defaultPriority = config('CodeComFreshdeskForm.config.defaultPriority') %}
 
     {#
         All select options are rendered server-side from the freshdesk_form_api_data
@@ -138,7 +138,7 @@
                                 {% if element.freshdeskFields.type is defined %}
                                     {% for choice in element.freshdeskFields.type %}
                                         <option value="{{ choice.value }}"
-                                            {% if choice.value == config('CodeComFreshDeskForm.config.defaultTicketType') %}selected{% endif %}>
+                                            {% if choice.value == config('CodeComFreshdeskForm.config.defaultTicketType') %}selected{% endif %}>
                                             {{ choice.label }}
                                         </option>
                                     {% endfor %}
@@ -357,7 +357,7 @@
                             When the page URL contains ?number=VALUE the JS plugin
                             reads data-url-number-field="true" and fills the value in.
                         #}
-                        {% set urlNumberField = config('CodeComFreshDeskForm.config.urlNumberField') %}
+                        {% set urlNumberField = config('CodeComFreshdeskForm.config.urlNumberField') %}
 
                         <div class="row g-2">
                             {% for field in element.freshdeskCustomFields %}

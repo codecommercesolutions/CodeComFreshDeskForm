@@ -42,14 +42,14 @@ Component.register('api-test-button', {
 
             try {
                 // ── Step 1: validate config fields ──────────────────────────
-                const config = await this.systemConfigApiService.getValues('CodeComFreshDeskForm.config');
+                const config = await this.systemConfigApiService.getValues('CodeComFreshdeskForm.config');
 
-                if (!config || !config['CodeComFreshDeskForm.config.enabled']) {
+                if (!config || !config['CodeComFreshdeskForm.config.enabled']) {
                     this._notifyError('Please enable Freshdesk integration first.');
                     return;
                 }
 
-                if (!config['CodeComFreshDeskForm.config.apiUrl'] || !config['CodeComFreshDeskForm.config.apiKey']) {
+                if (!config['CodeComFreshdeskForm.config.apiUrl'] || !config['CodeComFreshdeskForm.config.apiKey']) {
                     this._notifyError(this.$tc('api-test-button.error'));
                     return;
                 }
