@@ -44,10 +44,10 @@ class FormSubmissionDefinition extends EntityDefinition
             (new StringField('first_name', 'firstName'))->addFlags(new Required()),
             (new StringField('last_name', 'lastName'))->addFlags(new Required()),
             (new StringField('email', 'email'))->addFlags(new Required()),
-            (new StringField('phone', 'phone'))->addFlags(new Required()),
-            (new StringField('subject', 'subject'))->addFlags(new Required()),
+            new StringField('phone', 'phone'),
+            new StringField('subject', 'subject'),
             (new LongTextField('message', 'message'))->addFlags(new Required(), new ApiAware(), new AllowHtml()),
-            (new StringField('type', 'type'))->addFlags(new Required()),
+            new StringField('type', 'type'),
             new StringField('group_id', 'groupId'),
             new StringField('product_id', 'productId'),
             // ── New fields ─────────────────────────────────────────────────────

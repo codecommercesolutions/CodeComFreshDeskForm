@@ -217,9 +217,28 @@ class FreshdeskService
 
         $description = ! empty($formData['message']) ? $formData['message'] : '';
 
+        $subject = !empty($formData['subject']) ? $formData['subject'] : $this->systemConfigService->get('CodeComFreshdeskForm.config.defaultSubject', $salesChannelId);
+        $type = !empty($formData['type']) ? $formData['type'] : $this->systemConfigService->get('CodeComFreshdeskForm.config.defaultTicketType', $salesChannelId);
+
+        // Map English defaults to German if necessary (Duscholux Freshdesk expects German labels)
+        $typeMapping = [
+            'Request'    => 'Anfrage',
+            'Offer'      => 'Angebot',
+            'Extent'     => 'Ausmass',
+            'Order'      => 'Bestellung',
+            'Spare part' => 'Ersatzteil',
+            'Complaint'  => 'Reklamation',
+            'Repair'     => 'Reparatur',
+            'Spam'       => 'Spam',
+        ];
+
+        if (isset($typeMapping[$type])) {
+            $type = $typeMapping[$type];
+        }
+
         $ticketData = [
             'email'       => $formData['email']    ?? '',
-            'subject'     => $formData['subject']  ?? '',
+            'subject'     => $subject ?: 'Freshdesk Webshop Request',
             'description' => $description,
         ];
 
@@ -229,8 +248,8 @@ class FreshdeskService
         if (! empty($formData['name'])) {
             $ticketData['name'] = $formData['name'];
         }
-        if (! empty($formData['type'])) {
-            $ticketData['type'] = $formData['type'];
+        if (! empty($type)) {
+            $ticketData['type'] = $type;
         }
         if (isset($formData['status']) && is_numeric($formData['status'])) {
             $ticketData['status'] = (int) $formData['status'];
@@ -1381,15 +1400,3 @@ class FreshdeskService
         return $description;
     }
 }
-        if (isset($formData['status']) && is_numeric($formData['status'])) {
-            $ticketData['status'] = (int) $formData['status'];
-        }
-        if (isset($formData['priority']) && is_numeric($formData['priority'])) {
-            $ticketData['priority'] = (int) $formData['priority'];
-        }
-        if (isset($formData['status']) && is_numeric($formData['status'])) {
-            $ticketData['status'] = (int) $formData['status'];
-        }
-        if (isset($formData['priority']) && is_numeric($formData['priority'])) {
-            $ticketData['priority'] = (int) $formData['priority'];
-        }

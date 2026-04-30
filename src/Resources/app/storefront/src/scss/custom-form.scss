@@ -134,6 +134,10 @@
 
 // ── Submit button loading state (ButtonLoadingIndicator) ─────────────────────
 .freshdesk-standard-form {
+    .g-2 {
+        --bs-gutter-y: 0;
+    }
+
     [type="submit"] {
         position: relative;
         transition: opacity 0.15s ease;

@@ -9,12 +9,20 @@
     {% set showStatusField = config('CodeComFreshdeskForm.config.enableStatusField') %}
     {% set showSourceField = config('CodeComFreshdeskForm.config.enableSourceField') %}
     {% set showPriorityField = config('CodeComFreshdeskForm.config.enablePriorityField') %}
+    {% set showPhoneField = config('CodeComFreshdeskForm.config.enablePhoneField') %}
+    {% set showFacebookField = config('CodeComFreshdeskForm.config.enableFacebookField') %}
+    {% set showTwitterField = config('CodeComFreshdeskForm.config.enableTwitterField') %}
+    {% set showCompanyField = config('CodeComFreshdeskForm.config.enableCompanyField') %}
+    {% set showSubjectField = config('CodeComFreshdeskForm.config.enableSubjectField') %}
+    {% set showTicketTypeField = config('CodeComFreshdeskForm.config.enableTicketTypeField') %}
     {% set defaultGroupId = config('CodeComFreshdeskForm.config.freshdeskGroup') %}
     {% set defaultProductId = config('CodeComFreshdeskForm.config.freshdeskProduct') %}
     {% set defaultResponderId = config('CodeComFreshdeskForm.config.defaultResponderId') %}
     {% set defaultStatus = config('CodeComFreshdeskForm.config.defaultStatus') %}
     {% set defaultSource = config('CodeComFreshdeskForm.config.defaultSource') %}
     {% set defaultPriority = config('CodeComFreshdeskForm.config.defaultPriority') %}
+    {% set defaultSubject = config('CodeComFreshdeskForm.config.defaultSubject') %}
+    {% set defaultTicketType = config('CodeComFreshdeskForm.config.defaultTicketType') %}
 
     {#
         All select options are rendered server-side from the freshdesk_form_api_data
@@ -69,12 +77,14 @@
                     {% endblock %}
 
                     {% block freshdesk_form_input_phone %}
-                        <div class="col-md-6 form-group">
-                            <label class="form-label" for="{{ formPrefix }}-phone">
-                                {{ 'freshdesk.form.phoneLabel'|trans }}<span class="required">*</span>
-                            </label>
-                            <input type="tel" id="{{ formPrefix }}-phone" name="phone" class="form-control" pattern="[0-9]+" required>
-                        </div>
+                        {% if showPhoneField %}
+                            <div class="col-md-6 form-group">
+                                <label class="form-label" for="{{ formPrefix }}-phone">
+                                    {{ 'freshdesk.form.phoneLabel'|trans }}<span class="required">*</span>
+                                </label>
+                                <input type="tel" id="{{ formPrefix }}-phone" name="phone" class="form-control" pattern="[0-9]+" required>
+                            </div>
+                        {% endif %}
                     {% endblock %}
                 </div>
 
@@ -83,29 +93,33 @@
                 {# unique_external_id is only shown when enabled in plugin config    #}
                 <div class="row g-2">
                     {% block freshdesk_form_input_facebook_id %}
-                        <div class="col-md-6 form-group">
-                            <label class="form-label" for="{{ formPrefix }}-facebookId">
-                                {{ 'freshdesk.form.facebookIdLabel'|trans }}
-                            </label>
-                            <input type="text"
-                                   id="{{ formPrefix }}-facebookId"
-                                   name="facebook_id"
-                                   class="form-control"
-                                   placeholder="{{ 'freshdesk.form.facebookIdPlaceholder'|trans }}">
-                        </div>
+                        {% if showFacebookField %}
+                            <div class="col-md-6 form-group">
+                                <label class="form-label" for="{{ formPrefix }}-facebookId">
+                                    {{ 'freshdesk.form.facebookIdLabel'|trans }}
+                                </label>
+                                <input type="text"
+                                       id="{{ formPrefix }}-facebookId"
+                                       name="facebook_id"
+                                       class="form-control"
+                                       placeholder="{{ 'freshdesk.form.facebookIdPlaceholder'|trans }}">
+                            </div>
+                        {% endif %}
                     {% endblock %}
 
                     {% block freshdesk_form_input_twitter_id %}
-                        <div class="col-md-6 form-group">
-                            <label class="form-label" for="{{ formPrefix }}-twitterId">
-                                {{ 'freshdesk.form.twitterIdLabel'|trans }}
-                            </label>
-                            <input type="text"
-                                   id="{{ formPrefix }}-twitterId"
-                                   name="twitter_id"
-                                   class="form-control"
-                                   placeholder="{{ 'freshdesk.form.twitterIdPlaceholder'|trans }}">
-                        </div>
+                        {% if showTwitterField %}
+                            <div class="col-md-6 form-group">
+                                <label class="form-label" for="{{ formPrefix }}-twitterId">
+                                    {{ 'freshdesk.form.twitterIdLabel'|trans }}
+                                </label>
+                                <input type="text"
+                                       id="{{ formPrefix }}-twitterId"
+                                       name="twitter_id"
+                                       class="form-control"
+                                       placeholder="{{ 'freshdesk.form.twitterIdPlaceholder'|trans }}">
+                            </div>
+                        {% endif %}
                     {% endblock %}
                 </div>
 
@@ -127,37 +141,43 @@
                 {% endif %}
 
                 {# ── Ticket type + Company ──────────────────────────────────────── #}
-                <div class="row g-2 mb-4">
+                <div class="row g-2">
                     {% block freshdesk_form_select_type %}
-                        <div class="col-md-6 form-group">
-                            <label class="form-label" for="{{ formPrefix }}-type">
-                                {{ 'freshdesk.form.typeLabel'|trans }}<span class="required">*</span>
-                            </label>
-                            <select id="{{ formPrefix }}-type" name="type" class="form-select" required>
-                                <option value="">{{ 'freshdesk.form.selectOption'|trans }}</option>
-                                {% if element.freshdeskFields.type is defined %}
-                                    {% for choice in element.freshdeskFields.type %}
-                                        <option value="{{ choice.value }}"
-                                            {% if choice.value == config('CodeComFreshdeskForm.config.defaultTicketType') %}selected{% endif %}>
-                                            {{ choice.label }}
-                                        </option>
-                                    {% endfor %}
-                                {% endif %}
-                            </select>
-                        </div>
+                        {% if showTicketTypeField %}
+                            <div class="col-md-6 form-group">
+                                <label class="form-label" for="{{ formPrefix }}-type">
+                                    {{ 'freshdesk.form.typeLabel'|trans }}<span class="required">*</span>
+                                </label>
+                                <select id="{{ formPrefix }}-type" name="type" class="form-select" required>
+                                    <option value="">{{ 'freshdesk.form.selectOption'|trans }}</option>
+                                    {% if element.freshdeskFields.type is defined %}
+                                        {% for choice in element.freshdeskFields.type %}
+                                            <option value="{{ choice.value }}"
+                                                {% if choice.value == defaultTicketType %}selected{% endif %}>
+                                                {{ choice.label }}
+                                            </option>
+                                        {% endfor %}
+                                    {% endif %}
+                                </select>
+                            </div>
+                        {% else %}
+                            <input type="hidden" name="type" value="{{ defaultTicketType ?? '' }}">
+                        {% endif %}
                     {% endblock %}
                     {% block freshdesk_form_select_company %}
-                        <div class="col-md-6 form-group">
-                            <label class="form-label" for="{{ formPrefix }}-company-input">
-                                {{ 'freshdesk.form.companyLabel'|trans }}
-                            </label>
-                            <input type="text"
-                                   id="{{ formPrefix }}-company-input"
-                                   name="company_name"
-                                   class="form-control"
-                                   placeholder="{{ 'freshdesk.form.companySearchPlaceholder'|trans }}"
-                                   autocomplete="off">
-                        </div>
+                        {% if showCompanyField %}
+                            <div class="col-md-6 form-group">
+                                <label class="form-label" for="{{ formPrefix }}-company-input">
+                                    {{ 'freshdesk.form.companyLabel'|trans }}
+                                </label>
+                                <input type="text"
+                                       id="{{ formPrefix }}-company-input"
+                                       name="company_name"
+                                       class="form-control"
+                                       placeholder="{{ 'freshdesk.form.companySearchPlaceholder'|trans }}"
+                                       autocomplete="off">
+                            </div>
+                        {% endif %}
                     {% endblock %}
                 </div>
 
@@ -329,12 +349,16 @@
                 {# ── Subject & Message ─────────────────────────────────────────────── #}
                 <div class="row g-2">
                     {% block freshdesk_form_input_subject %}
-                        <div class="col-12 form-group">
-                            <label class="form-label" for="{{ formPrefix }}-subject">
-                                {{ 'freshdesk.form.subjectLabel'|trans }}<span class="required">*</span>
-                            </label>
-                            <input type="text" id="{{ formPrefix }}-subject" name="subject" class="form-control" required>
-                        </div>
+                        {% if showSubjectField %}
+                            <div class="col-12 form-group">
+                                <label class="form-label" for="{{ formPrefix }}-subject">
+                                    {{ 'freshdesk.form.subjectLabel'|trans }}<span class="required">*</span>
+                                </label>
+                                <input type="text" id="{{ formPrefix }}-subject" name="subject" class="form-control" required>
+                            </div>
+                        {% else %}
+                            <input type="hidden" name="subject" value="{{ defaultSubject ?? '' }}">
+                        {% endif %}
                     {% endblock %}
 
                     {% block freshdesk_form_textarea_message %}
@@ -348,7 +372,16 @@
                 </div>
 
                 {# ── Custom ticket fields (default=false from Freshdesk API) ────────── #}
+                {% set enabledCustomFields = config('CodeComFreshdeskForm.config.enabledCustomFields') %}
                 {% if element.freshdeskCustomFields is defined and element.freshdeskCustomFields|length > 0 %}
+                    {% set visibleCustomFields = [] %}
+                    {% for field in element.freshdeskCustomFields %}
+                        {% if enabledCustomFields and field.name in enabledCustomFields %}
+                            {% set visibleCustomFields = visibleCustomFields|merge([field]) %}
+                        {% endif %}
+                    {% endfor %}
+
+                    {% if visibleCustomFields|length > 0 %}
                     {% block freshdesk_form_custom_fields %}
                         {#
                             urlNumberField: the admin configures the Freshdesk API field name
@@ -360,7 +393,7 @@
                         {% set urlNumberField = config('CodeComFreshdeskForm.config.urlNumberField') %}
 
                         <div class="row g-2">
-                            {% for field in element.freshdeskCustomFields %}
+                            {% for field in visibleCustomFields %}
                                 {#
                                     Hidden type hint — the PHP controller reads
                                     custom_field_types[cf_name] to cast the value
@@ -453,6 +486,7 @@
                             {% endfor %}
                         </div>
                     {% endblock %}
+                    {% endif %}
                 {% endif %}
 
                 <div class="row g-2 float-end">

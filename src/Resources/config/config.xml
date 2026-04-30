@@ -34,28 +34,36 @@
     </card>
 
     <card>
-        <title>Customize Form</title>
-        <title lang="de-DE">Formular anpassen</title>
+        <title>Default Values</title>
+        <title lang="de-DE">Standardwerte</title>
+
+        <input-field type="text">
+            <name>defaultSubject</name>
+            <label>Default Subject</label>
+            <label lang="de-DE">Standard Betreff</label>
+            <placeholder>Default Subject</placeholder>
+            <defaultValue>Freshdesk Webshop Request</defaultValue>
+        </input-field>
 
         <input-field type="text">
             <name>defaultTicketType</name>
             <label>Default Ticket Type</label>
             <label lang="de-DE">Standard Ticket-Typ</label>
             <helpText>Request, Offer, Extent, Order, Spare part, Complaint, Repair, and Spam.</helpText>
-            <helpText lang="de-DE">Request, Offer, Extent, Order, Spare part, Complaint, Repair, and Spam.</helpText>
+            <helpText lang="de-DE">Anfrage, Angebot, Erweiterung, Bestellung, Ersatzteil, Reklamation, Reparatur und Spam.</helpText>
             <placeholder>Request</placeholder>
             <defaultValue>Spare part</defaultValue>
         </input-field>
 
         <component name="freshdesk-group-select">
             <name>freshdeskGroup</name>
-            <label>Freshdesk Group</label>
+            <label>Default Freshdesk Group</label>
             <label lang="de-DE">Default Freshdesk Gruppe</label>
         </component>
 
         <component name="freshdesk-product-select">
             <name>freshdeskProduct</name>
-            <label>Freshdesk Product</label>
+            <label>Default Freshdesk Product</label>
             <label lang="de-DE">Default Freshdesk Produkt</label>
         </component>
 
@@ -101,6 +109,12 @@
             <placeholder>cf_reference_number</placeholder>
         </input-field>
 
+    </card>
+
+    <card>
+        <title>Field Visibility</title>
+        <title lang="de-DE">Feld-Sichtbarkeit</title>
+
         <input-field type="bool">
             <name>enableEmailConfigField</name>
             <label>Show Email Configuration field on form</label>
@@ -114,6 +128,48 @@
             <label lang="de-DE">"Eindeutige externe ID"-Feld im Formular anzeigen</label>
             <helpText>When enabled a Unique External ID input appears on the storefront form. Disable to hide it completely.</helpText>
             <defaultValue>false</defaultValue>
+        </input-field>
+
+        <input-field type="bool">
+            <name>enablePhoneField</name>
+            <label>Show Phone field on form</label>
+            <label lang="de-DE">Telefonfeld im Formular anzeigen</label>
+            <defaultValue>true</defaultValue>
+        </input-field>
+
+        <input-field type="bool">
+            <name>enableFacebookField</name>
+            <label>Show Facebook field on form</label>
+            <label lang="de-DE">Facebook-Feld im Formular anzeigen</label>
+            <defaultValue>true</defaultValue>
+        </input-field>
+
+        <input-field type="bool">
+            <name>enableTwitterField</name>
+            <label>Show Twitter / X field on form</label>
+            <label lang="de-DE">Twitter / X-Feld im Formular anzeigen</label>
+            <defaultValue>true</defaultValue>
+        </input-field>
+
+        <input-field type="bool">
+            <name>enableCompanyField</name>
+            <label>Show Company name field on form</label>
+            <label lang="de-DE">Firmennamenfeld im Formular anzeigen</label>
+            <defaultValue>true</defaultValue>
+        </input-field>
+
+        <input-field type="bool">
+            <name>enableSubjectField</name>
+            <label>Show Subject field on form</label>
+            <label lang="de-DE">Betrefffeld im Formular anzeigen</label>
+            <defaultValue>true</defaultValue>
+        </input-field>
+
+        <input-field type="bool">
+            <name>enableTicketTypeField</name>
+            <label>Show Ticket Type field on form</label>
+            <label lang="de-DE">Ticket-Typ-Feld im Formular anzeigen</label>
+            <defaultValue>true</defaultValue>
         </input-field>
 
         <input-field type="bool">
@@ -157,6 +213,13 @@
             <label lang="de-DE">Prioritätsfeld im Formular anzeigen</label>
             <defaultValue>true</defaultValue>
         </input-field>
+
+        <component name="freshdesk-custom-field-select">
+            <name>enabledCustomFields</name>
+            <label>Visible Custom Fields</label>
+            <label lang="de-DE">Sichtbare benutzerdefinierte Felder</label>
+            <helpText>Select which custom fields to show on the form. If empty, no custom fields are shown.</helpText>
+        </component>
 
     </card>
 

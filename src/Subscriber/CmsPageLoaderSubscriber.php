@@ -223,11 +223,6 @@ class CmsPageLoaderSubscriber implements EventSubscriberInterface
                 continue;
             }
 
-            // Skip fields not displayed to customers
-            if (($field['displayed_to_customers'] ?? false) !== true) {
-                continue;
-            }
-
             $name     = $field['name']                  ?? '';
             $label    = $field['label_for_customers']   ?? ($field['label'] ?? $name);
             $type     = $this->normalizeCustomFieldType($field);
