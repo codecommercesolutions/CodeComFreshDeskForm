@@ -11,6 +11,7 @@
         "config": {
           "formTitle": "Form Title",
           "descriptionLabel": "Form Description ",
+          "defaultSubject": "Default Subject",
           "firstNameLabel": "First Name ",
           "lastNameLabel": "Last Name ",
           "emailLabel": "Email ",

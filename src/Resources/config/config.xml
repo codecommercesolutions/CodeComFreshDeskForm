@@ -111,6 +111,7 @@
 
         <component name="sw-snippet-field">
             <name>successMessageSnippet</name>
+            <snippet>freshdesk.form.success</snippet>
             <label>Success Message Snippet</label>
             <label lang="de-DE">Erfolgsmeldung Textbaustein</label>
             <defaultValue>freshdesk.form.success</defaultValue>
