@@ -34,7 +34,7 @@
       "selectOption": "Please select...",
       "submit": "Submit",
       "submitting": "Submitting...",
-      "success": "Form submitted successfully!",
+      "success": "Thank you for your submission! Your ticket has been created successfully.",
       "required": "This field is required",
       "invalidEmail": "Please enter a valid email address",
       "invalidUrl": "Please enter a valid URL",

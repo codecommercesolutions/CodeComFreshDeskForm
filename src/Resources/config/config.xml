@@ -109,6 +109,15 @@
             <placeholder>cf_reference_number</placeholder>
         </input-field>
 
+        <component name="sw-snippet-field">
+            <name>successMessageSnippet</name>
+            <label>Success Message Snippet</label>
+            <label lang="de-DE">Erfolgsmeldung Textbaustein</label>
+            <defaultValue>freshdesk.form.success</defaultValue>
+            <helpText>The snippet key for the success message shown after form submission.</helpText>
+            <helpText lang="de-DE">Der Textbaustein-Schlüssel für die Erfolgsmeldung, die nach dem Absenden des Formulars angezeigt wird.</helpText>
+        </component>
+
     </card>
 
     <card>

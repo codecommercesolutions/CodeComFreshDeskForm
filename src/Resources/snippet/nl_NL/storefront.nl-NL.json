@@ -1,0 +1,52 @@
+{
+  "freshdesk": {
+    "form": {
+      "firstNameLabel": "Voornaam",
+      "lastNameLabel": "Achternaam",
+      "emailLabel": "E-mailadres",
+      "phoneLabel": "Telefoonnummer",
+      "typeLabel": "Tickettype",
+      "statusLabel": "Status",
+      "sourceLabel": "Bron",
+      "priorityLabel": "Prioriteit",
+      "subjectLabel": "Onderwerp",
+      "messageLabel": "Bericht",
+      "submitLabel": "Verzenden",
+      "groupLabel": "Groep",
+      "productLabel": "Product",
+      "warrantyNumberLabel": "Garantienummer",
+      "responderLabel": "Agent",
+      "emailConfigLabel": "E-mailconfiguratie",
+      "companyLabel": "Bedrijf",
+      "selectGroup": "Selecteer groep...",
+      "selectProduct": "Selecteer product...",
+      "selectAgent": "Selecteer agent...",
+      "selectEmailConfig": "Selecteer e-mailconfig...",
+      "selectCompany": "Selecteer bedrijf...",
+      "validation": {
+        "empty": "Invoer mag niet leeg zijn."
+      },
+      "error": {
+        "general": "Er is een fout opgetreden. Probeer het opnieuw."
+      },
+      "companySearchPlaceholder": "Zoek of maak bedrijf aan...",
+      "privacy": "Ik ga akkoord met het <a href=\"/privacy-beleid\" target=\"_blank\">privacybeleid</a>",
+      "selectOption": "Selecteer a.u.b....",
+      "submit": "Verzenden",
+      "submitting": "Verzenden...",
+      "success": "Bedankt voor uw inzending! Uw ticket is succesvol aangemaakt.",
+      "required": "Dit veld is verplicht",
+      "invalidEmail": "Voer a.u.b. een geldig e-mailadres in",
+      "invalidUrl": "Voer a.u.b. een geldige URL in",
+      "invalidNumber": "Voer a.u.b. een geldig nummer in",
+      "fileTooLarge": "Bestandsgrootte overschrijdt de maximaal toegestane grootte",
+      "invalidFileType": "Bestandstype is niet toegestaan",
+      "facebookIdLabel": "Facebook",
+      "facebookIdPlaceholder": "bijv. mijnprofiel",
+      "twitterIdLabel": "Twitter / X",
+      "twitterIdPlaceholder": "bijv. mijnaccount",
+      "uniqueExternalIdLabel": "Externe referentie-ID",
+      "uniqueExternalIdPlaceholder": "Uw externe referentienummer"
+    }
+  }
+}

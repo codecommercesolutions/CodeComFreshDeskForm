@@ -21,8 +21,9 @@
     {% set defaultStatus = config('CodeComFreshdeskForm.config.defaultStatus') %}
     {% set defaultSource = config('CodeComFreshdeskForm.config.defaultSource') %}
     {% set defaultPriority = config('CodeComFreshdeskForm.config.defaultPriority') %}
-    {% set defaultSubject = config('CodeComFreshdeskForm.config.defaultSubject') %}
     {% set defaultTicketType = config('CodeComFreshdeskForm.config.defaultTicketType') %}
+
+    {% set defaultSubject = element.config.defaultSubject.value ?: config('CodeComFreshdeskForm.config.defaultSubject') ?: 'Freshdesk Webshop Request' %}
 
     {#
         All select options are rendered server-side from the freshdesk_form_api_data

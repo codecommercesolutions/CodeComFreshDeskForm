@@ -12,6 +12,7 @@ use Shopware\Core\Framework\DataAbstractionLayer\Search\Criteria;
 use Shopware\Core\Framework\Uuid\Uuid;
 use Shopware\Core\Framework\Validation\DataBag\RequestDataBag;
 use Shopware\Core\System\SalesChannel\SalesChannelContext;
+use Shopware\Core\System\SystemConfig\SystemConfigService;
 use Shopware\Storefront\Controller\StorefrontController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -26,7 +27,8 @@ class CustomFormController extends StorefrontController
     public function __construct(
         private readonly FreshdeskService $freshdeskService,
         private readonly EntityRepository $formSubmissionRepository,
-        private readonly EntityRepository $formApiDataRepository
+        private readonly EntityRepository $formApiDataRepository,
+        private readonly SystemConfigService $systemConfigService
     ) {
     }
 
@@ -184,9 +186,14 @@ class CustomFormController extends StorefrontController
         $this->formSubmissionRepository->create([$submissionData], $context->getContext());
 
         if ($result['success']) {
+            $message = $this->systemConfigService->get('CodeComFreshdeskForm.config.successMessageSnippet', $context->getSalesChannelId());
+            if (empty($message)) {
+                $message = $this->trans('freshdesk.form.success');
+            }
+
             return new JsonResponse([
                 'type'    => 'success',
-                'message' => 'Thank you for your submission! Your ticket has been created successfully.',
+                'message' => $message,
                 'data'    => $result,
             ]);
         }

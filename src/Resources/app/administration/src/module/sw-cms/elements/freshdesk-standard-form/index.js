@@ -41,6 +41,10 @@ Shopware.Service('cmsService').registerCmsElement({
             source: 'static',
             value: 'Freshdesk Form'
         },
+        defaultSubject: {
+            source: 'static',
+            value: null
+        },
         groupId: {
             source: 'static',
             value: null

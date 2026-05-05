@@ -1,0 +1,52 @@
+{
+  "freshdesk": {
+    "form": {
+      "firstNameLabel": "Prénom",
+      "lastNameLabel": "Nom",
+      "emailLabel": "Adresse e-mail",
+      "phoneLabel": "Numéro de téléphone",
+      "typeLabel": "Type de ticket",
+      "statusLabel": "Statut",
+      "sourceLabel": "Source",
+      "priorityLabel": "Priorité",
+      "subjectLabel": "Sujet",
+      "messageLabel": "Message",
+      "submitLabel": "Envoyer",
+      "groupLabel": "Groupe",
+      "productLabel": "Produit",
+      "warrantyNumberLabel": "Numéro de garantie",
+      "responderLabel": "Agent",
+      "emailConfigLabel": "Configuration de l'e-mail",
+      "companyLabel": "Entreprise",
+      "selectGroup": "Sélectionner le groupe...",
+      "selectProduct": "Sélectionner le produit...",
+      "selectAgent": "Sélectionner l'agent...",
+      "selectEmailConfig": "Sélectionner la config e-mail...",
+      "selectCompany": "Sélectionner l'entreprise...",
+      "validation": {
+        "empty": "L'entrée ne doit pas être vide."
+      },
+      "error": {
+        "general": "Une erreur est survenue. Veuillez réessayer."
+      },
+      "companySearchPlaceholder": "Rechercher ou créer une entreprise...",
+      "privacy": "J'accepte la <a href=\"/privacy-policy\" target=\"_blank\">politique de confidentialité</a>",
+      "selectOption": "Veuillez sélectionner...",
+      "submit": "Envoyer",
+      "submitting": "Envoi...",
+      "success": "Merci pour votre soumission ! Votre ticket a été créé avec succès.",
+      "required": "Ce champ est obligatoire",
+      "invalidEmail": "Veuillez entrer une adresse e-mail valide",
+      "invalidUrl": "Veuillez entrer une URL valide",
+      "invalidNumber": "Veuillez entrer un nombre valide",
+      "fileTooLarge": "La taille du fichier dépasse la taille maximale autorisée",
+      "invalidFileType": "Le type de fichier n'est pas autorisé",
+      "facebookIdLabel": "Facebook",
+      "facebookIdPlaceholder": "ex. monprofil",
+      "twitterIdLabel": "Twitter / X",
+      "twitterIdPlaceholder": "ex. moncompte",
+      "uniqueExternalIdLabel": "ID de référence externe",
+      "uniqueExternalIdPlaceholder": "Votre numéro de référence externe"
+    }
+  }
+}

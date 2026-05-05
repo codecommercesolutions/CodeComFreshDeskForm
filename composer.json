@@ -21,11 +21,21 @@
         "copyright": "(c) by CodeCommerce Solutions",
         "label": {
             "de-DE": "Freshdesk Form Integration",
-            "en-GB": "Freshdesk Form Integration"
+            "en-GB": "Freshdesk Form Integration",
+            "fr-FR": "Intégration du formulaire Freshdesk",
+            "nl-NL": "Freshdesk-formulierintegratie",
+            "es-ES": "Integración del formulario Freshdesk",
+            "de-CH": "Freshdesk Form Integration",
+            "fr-CH": "Intégration du formulaire Freshdesk"
         },
         "description": {
             "de-DE": "Mit diesem Plugin für Shopware, können Sie unterschiedliche Formulare erstellen",
-            "en-GB": "With this plugin it is relatively easy to generate forms"
+            "en-GB": "With this plugin it is relatively easy to generate forms",
+            "fr-FR": "Avec ce plugin, il est relativement facile de générer des formulaires",
+            "nl-NL": "Met deze plugin is het relatief eenvoudig om formulieren te genereren",
+            "es-ES": "Con este plugin es relativamente fácil generar formularios",
+            "de-CH": "Mit diesem Plugin für Shopware, können Sie unterschiedliche Formulare erstellen",
+            "fr-CH": "Avec ce plugin, il est relativement facile de générer des formulaires"
         },
         "manufacturerLink": {
             "de-DE": "https://www.codecommercesolutions.com",

@@ -12,6 +12,13 @@
             :label="$tc('sw-cms.elements.freshdeskStandardForm.config.descriptionLabel')"
             ></mt-textarea>
 
+    <div class="sw-cms-el-form-contact-form-group">
+        <mt-text-field
+            v-model="element.config.defaultSubject.value"
+            :label="$tc('sw-cms.elements.freshdeskStandardForm.config.defaultSubject')"
+            ></mt-text-field>
+    </div>
+
     {#<div class="sw-cms-el-form-contact-form-group two-items">
         <mt-text-field
             :label="$tc('sw-cms.elements.freshdeskStandardForm.config.firstNameLabel')"

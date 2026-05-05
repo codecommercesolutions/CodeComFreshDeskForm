@@ -1,0 +1,52 @@
+{
+  "freshdesk": {
+    "form": {
+      "firstNameLabel": "Nombre",
+      "lastNameLabel": "Apellido",
+      "emailLabel": "Correo electrónico",
+      "phoneLabel": "Número de teléfono",
+      "typeLabel": "Tipo de ticket",
+      "statusLabel": "Estado",
+      "sourceLabel": "Fuente",
+      "priorityLabel": "Prioridad",
+      "subjectLabel": "Asunto",
+      "messageLabel": "Mensaje",
+      "submitLabel": "Enviar",
+      "groupLabel": "Grupo",
+      "productLabel": "Producto",
+      "warrantyNumberLabel": "Número de garantía",
+      "responderLabel": "Agente",
+      "emailConfigLabel": "Configuración de correo electrónico",
+      "companyLabel": "Empresa",
+      "selectGroup": "Seleccionar grupo...",
+      "selectProduct": "Seleccionar producto...",
+      "selectAgent": "Seleccionar agente...",
+      "selectEmailConfig": "Seleccionar configuración de correo...",
+      "selectCompany": "Seleccionar empresa...",
+      "validation": {
+        "empty": "El campo no debe estar vacío."
+      },
+      "error": {
+        "general": "Ocurrió un error. Por favor, inténtelo de nuevo."
+      },
+      "companySearchPlaceholder": "Buscar o crear empresa...",
+      "privacy": "Acepto la <a href=\"/politica-de-privacidad\" target=\"_blank\">política de privacidad</a>",
+      "selectOption": "Por favor, seleccione...",
+      "submit": "Enviar",
+      "submitting": "Enviando...",
+      "success": "¡Gracias por su envío! Su ticket ha sido creado con éxito.",
+      "required": "Este campo es obligatorio",
+      "invalidEmail": "Por favor, introduzca un correo electrónico válido",
+      "invalidUrl": "Por favor, introduzca una URL válida",
+      "invalidNumber": "Por favor, introduzca un número válido",
+      "fileTooLarge": "El tamaño del archivo excede el máximo permitido",
+      "invalidFileType": "El tipo de archivo no está permitido",
+      "facebookIdLabel": "Facebook",
+      "facebookIdPlaceholder": "ej. moperfil",
+      "twitterIdLabel": "Twitter / X",
+      "twitterIdPlaceholder": "ej. micuenta",
+      "uniqueExternalIdLabel": "ID de referencia externa",
+      "uniqueExternalIdPlaceholder": "Su número de referencia externo"
+    }
+  }
+}
