@@ -186,10 +186,8 @@ class CustomFormController extends StorefrontController
         $this->formSubmissionRepository->create([$submissionData], $context->getContext());
 
         if ($result['success']) {
-            $message = $this->systemConfigService->get('CodeComFreshdeskForm.config.successMessageSnippet', $context->getSalesChannelId());
-            if (empty($message)) {
-                $message = $this->trans('freshdesk.form.success');
-            }
+            $messageKey = $this->systemConfigService->get('CodeComFreshdeskForm.config.successMessageSnippet', $context->getSalesChannelId()) ?: 'freshdesk.form.success';
+            $message = $this->trans($messageKey);
 
             return new JsonResponse([
                 'type'    => 'success',

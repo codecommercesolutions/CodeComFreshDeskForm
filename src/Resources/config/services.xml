@@ -35,6 +35,7 @@
 
         <service id="CodeCom\FreshdeskForm\Subscriber\CmsPageLoaderSubscriber">
             <argument key="$formApiDataRepository" type="service" id="freshdesk_form_api_data.repository"/>
+            <argument key="$translator" type="service" id="translator"/>
             <tag name="kernel.event_subscriber"/>
         </service>
 

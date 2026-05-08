@@ -8,6 +8,7 @@ use Shopware\Core\Content\Cms\Events\CmsPageLoadedEvent;
 use Shopware\Core\Framework\DataAbstractionLayer\EntityRepository;
 use Shopware\Core\Framework\DataAbstractionLayer\Search\Criteria;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
  * Injects all Freshdesk data into CMS slots of type "freshdesk-standard-form".
@@ -19,7 +20,8 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 class CmsPageLoaderSubscriber implements EventSubscriberInterface
 {
     public function __construct(
-        private readonly EntityRepository $formApiDataRepository
+        private readonly EntityRepository $formApiDataRepository,
+        private readonly TranslatorInterface $translator
     ) {
     }
 
@@ -224,9 +226,20 @@ class CmsPageLoaderSubscriber implements EventSubscriberInterface
             }
 
             $name     = $field['name']                  ?? '';
-            $label    = $field['label_for_customers']   ?? ($field['label'] ?? $name);
             $type     = $this->normalizeCustomFieldType($field);
             $required = ($field['required_for_customers'] ?? false) === true;
+
+            // ── Snippet-first label resolution ───────────────────────────────
+            // Look for 'freshdesk.custom_field.cf_name'. If it exists, use it.
+            // Otherwise fall back to Freshdesk's customer label or internal label.
+            $snippetKey      = 'freshdesk.custom_field.' . $name;
+            $translatedLabel = $this->translator->trans($snippetKey);
+
+            if ($translatedLabel !== $snippetKey) {
+                $label = $translatedLabel;
+            } else {
+                $label = $field['label_for_customers'] ?? ($field['label'] ?? $name);
+            }
 
             // Build choices for dropdown fields
             $choices = [];
